@@ -70,4 +70,40 @@ document.addEventListener('DOMContentLoaded', function () {
     function restart() { clearInterval(timer); start(); }
     go(0); start();
   });
+
+  // ---- abas (Para Você / Para Empresas) ----
+  document.querySelectorAll('[data-tabs]').forEach(function (group) {
+    var btns = group.querySelectorAll('.tab-btn');
+    var panels = group.querySelectorAll('.tab-panel');
+    btns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var t = btn.getAttribute('data-tab');
+        btns.forEach(function (b) { b.classList.toggle('on', b === btn); });
+        panels.forEach(function (pn) { pn.classList.toggle('on', pn.getAttribute('data-panel') === t); });
+      });
+    });
+  });
+
+  // ---- parallax suave ----
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var pxEls = [].slice.call(document.querySelectorAll('[data-parallax]'));
+  if (!reduce && pxEls.length) {
+    var ticking = false;
+    function onScroll() {
+      if (ticking) return; ticking = true;
+      requestAnimationFrame(function () {
+        var vy = window.pageYOffset, vh = window.innerHeight;
+        pxEls.forEach(function (el) {
+          var host = el.parentElement.getBoundingClientRect();
+          var speed = parseFloat(el.getAttribute('data-parallax')) || 0.18;
+          var center = host.top + host.height / 2 - vh / 2;
+          el.style.transform = 'translate3d(0,' + (-center * speed).toFixed(1) + 'px,0) scale(1.18)';
+        });
+        ticking = false;
+      });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    onScroll();
+  }
 });
