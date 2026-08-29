@@ -7,6 +7,14 @@ document.addEventListener('DOMContentLoaded', function () {
   var burger = document.querySelector('.burger'), nav = document.querySelector('.nav');
   if (burger && nav) burger.addEventListener('click', function () { nav.classList.toggle('open'); });
 
+  // header encolhe/ganha sombra ao rolar
+  var header = document.querySelector('.header');
+  if (header) {
+    var onScrollHeader = function () { header.classList.toggle('scrolled', window.pageYOffset > 12); };
+    window.addEventListener('scroll', onScrollHeader, { passive: true });
+    onScrollHeader();
+  }
+
   // formulário -> WhatsApp
   var form = document.getElementById('cotacao');
   if (form) form.addEventListener('submit', function (e) {
