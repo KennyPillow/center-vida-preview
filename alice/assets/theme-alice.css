@@ -1,0 +1,51 @@
+/* ===== TEMA "ALICE" — editorial elegante, serifada, magenta ===== */
+:root{
+  --brand:#40002D; --brand-dark:#2A001E; --brand-2:#BE0380;
+  --accent:#BE0380; --accent-dark:#8f0260;
+  --navy:#2A001E; --ink:#4a3a44;
+  --green:#BE0380; --green-dark:#9c026a; --green-bright:#E84AAE;
+  --soft:#F8F3F7; --soft2:#F0E3EC; --line:#EBDDE6; --muted:#7c6b75;
+  --grad-brand:linear-gradient(120deg,#2A001E 0%,#40002D 42%,#BE0380 135%);
+  --shadow:0 14px 36px rgba(42,0,30,.08); --shadow-lg:0 30px 70px rgba(42,0,30,.16);
+  --radius:22px;
+  --ff-head:"Fraunces",Georgia,"Times New Roman",serif;
+  --ff-body:"Inter",system-ui,-apple-system,sans-serif;
+}
+h1,h2,h3,h4{font-weight:500;letter-spacing:-.012em}
+.sec-title{font-weight:500}
+.hero-x h1,.band h2{font-weight:400}
+
+/* formas mais arredondadas (Alice) */
+.card,.plancard,.fotobox,.quote,.case,.wf,.form-wrap{border-radius:24px}
+.op-logo{border-radius:16px}
+.btn{border-radius:999px}
+
+/* accents magenta */
+.btn-green{background:var(--accent);box-shadow:0 12px 26px rgba(190,3,128,.32)}
+.btn-green:hover{background:var(--green-dark)}
+.eyebrow{background:rgba(190,3,128,.09);color:var(--accent-dark)}
+.eyebrow::before{background:var(--accent);box-shadow:0 0 0 3px rgba(190,3,128,.18)}
+.nav a::after{background:linear-gradient(90deg,var(--brand),var(--accent))}
+.drop{border-top-color:var(--accent)}
+.plancard.pop,.plan.badge-pop{border-color:var(--accent);box-shadow:0 24px 50px rgba(190,3,128,.18)}
+.plan .top .ic,.iconbox .ic{background:linear-gradient(135deg,#f7dcec,#f3e3ee);color:var(--accent-dark);box-shadow:inset 0 0 0 1px rgba(190,3,128,.16)}
+.mono-av,.case .who .av,.stat .ic{}
+.stat .ic{background:linear-gradient(135deg,#f7dcec,#f3e3ee);color:var(--accent-dark)}
+.sig-list .it .ic{background:linear-gradient(135deg,#f7dcec,#f3e3ee);color:var(--accent-dark)}
+.hero-rating{background:rgba(42,0,30,.5)}
+.hero-x .badges .b{background:rgba(42,0,30,.42)}
+.tab-btn.on{background:var(--grad-brand)}
+.wa-float{background:#25D366}
+
+/* hero mais editorial: overlay suave e headline leve */
+.hero-x .ov{background:
+  linear-gradient(90deg,rgba(42,0,30,.88) 0%,rgba(42,0,30,.58) 40%,rgba(42,0,30,.18) 72%,rgba(190,3,128,.14) 100%),
+  linear-gradient(0deg,rgba(42,0,30,.45),transparent 42%)}
+.hero-x h1{font-size:clamp(38px,6vw,64px);letter-spacing:-.015em}
+.hero-x h1 .hl{background:linear-gradient(100deg,#ffc4ea,#BE0380);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sec-title .hl{background:linear-gradient(100deg,var(--brand),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat .v{background:linear-gradient(120deg,var(--brand),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+.signature .wm{color:rgba(190,3,128,.05)}
+
+/* header/topbar */
+.topbar{background:var(--brand-dark)}
