@@ -1,23 +1,23 @@
-/* ===== TEMA "ALICE" (layout editorial/serifado) NAS CORES DA CENTER VIDA ===== */
-/* Cores herdam da base (azul-marinho + teal + verde). Muda tipografia, pesos e formas. */
+/* ===== TEMA "ALICE" (layout Alice) NAS CORES DA CENTER VIDA ===== */
+/* Cores herdam da base (azul-marinho + teal). Muda tipografia p/ sans leve estilo Haffer. */
 :root{
-  --radius:24px;
-  --ff-head:"Fraunces",Georgia,"Times New Roman",serif;
+  --radius:22px;
+  --ff-head:"Hanken Grotesk","Inter",system-ui,-apple-system,sans-serif;
   --ff-body:"Inter",system-ui,-apple-system,sans-serif;
 }
-/* serifada elegante, pesos leves (como a Alice) */
-h1,h2,h3,h4{font-weight:500;letter-spacing:-.012em}
+/* sans geométrica, pesos leves (como a Alice / Haffer) */
+h1,h2,h3,h4{font-weight:500;letter-spacing:-.02em}
 .sec-title{font-weight:500}
-.hero-x h1,.band h2{font-weight:400}
-.hero-x h1{font-size:clamp(38px,6vw,64px);letter-spacing:-.015em}
-.page-hero h1{font-weight:500}
+.hero-x h1,.band h2{font-weight:300}
+.hero-x h1{font-size:clamp(38px,6vw,66px);letter-spacing:-.03em;font-weight:300}
+.page-hero h1{font-weight:400}
 .rating-card .big,.stat .v,.plancard .media h3,.hosp-cap{font-weight:600}
 .brand small,.eyebrow,.topbar,.hosp-ops span,.plancard .media .for{font-family:var(--ff-body)}
 
-/* formas mais arredondadas / editorial */
-.card,.plancard,.fotobox,.quote,.case,.wf,.form-wrap,.hosp-card,.rating-card,.cta-band{border-radius:26px}
-.op-logo{border-radius:16px}
+/* formas arredondadas estilo Alice */
+.card,.plancard,.fotobox,.quote,.case,.wf,.form-wrap,.hosp-card,.rating-card,.cta-band{border-radius:22px}
+.op-logo{border-radius:14px}
 .plancard .media{border-radius:0}
-.sig-photo .fotobox{border-radius:30px}
-section{padding:90px 0}
+.sig-photo .fotobox{border-radius:26px}
+section{padding:88px 0}
 .sec-lead{font-size:18px}

@@ -1,17 +1,24 @@
 /* ===== HOME fiel à ALICE (editorial): hero claro, manifestos, blocos arredondados ===== */
-.ah-hero{position:relative;min-height:min(86vh,720px);display:flex;align-items:center;overflow:hidden;background:var(--soft)}
-.ah-bg{position:absolute;inset:0;background-size:cover;background-position:62% 18%;transform:scale(1.06)}
-.ah-ov{position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,255,255,.95) 0%,rgba(255,255,255,.74) 33%,rgba(255,255,255,.28) 60%,transparent 80%)}
-.ah-in{position:relative;z-index:2;padding:60px 22px;width:100%}
-.ah-eye{font-family:var(--ff-body);font-weight:600;letter-spacing:.15em;text-transform:uppercase;font-size:12px;color:var(--accent-dark);margin-bottom:22px}
-.ah-hero h1{font-family:var(--ff-head);font-weight:400;color:var(--navy);font-size:clamp(34px,5.4vw,62px);line-height:1.08;max-width:19ch;letter-spacing:-.01em}
-.ah-hero h1 .mut{color:rgba(21,38,63,.48)}
-.ah-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}
-.ah-btn{display:inline-flex;align-items:center;gap:10px;background:var(--brand);color:#fff;font-family:var(--ff-body);font-weight:600;padding:15px 26px;border-radius:999px;font-size:15px;transition:.2s}
+/* HERO escuro estilo Alice: foto full-bleed + texto branco leve + CTAs "glass" */
+.ah-hero{position:relative;min-height:min(94vh,820px);display:flex;align-items:center;overflow:hidden;background:var(--navy)}
+.ah-bg{position:absolute;inset:0;background-size:cover;background-position:70% 24%;transform:scale(1.04)}
+.ah-ov{position:absolute;inset:0;background:linear-gradient(90deg,rgba(15,26,45,.86) 0%,rgba(15,26,45,.6) 38%,rgba(15,26,45,.18) 66%,rgba(15,26,45,.05) 100%),linear-gradient(180deg,rgba(15,26,45,.5) 0%,transparent 30%,transparent 60%,rgba(15,26,45,.35) 100%)}
+.ah-in{position:relative;z-index:2;padding:120px 22px 70px;width:100%}
+.ah-eye{font-family:var(--ff-body);font-weight:600;letter-spacing:.16em;text-transform:uppercase;font-size:12px;color:#8ff3ff;margin-bottom:22px}
+.ah-hero h1{font-family:var(--ff-head);font-weight:300;color:#fff;font-size:clamp(38px,6.2vw,72px);line-height:1.03;max-width:16ch;letter-spacing:-.03em}
+.ah-hero h1 .mut{color:rgba(255,255,255,.5)}
+.ah-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:36px}
+.ah-btn{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.14);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:#fff;border:1px solid rgba(255,255,255,.28);font-family:var(--ff-body);font-weight:600;padding:16px 30px;border-radius:999px;font-size:15px;transition:.2s}
 .ah-btn i{font-style:normal}
-.ah-btn:hover{background:var(--brand-dark);transform:translateY(-2px)}
-.ah-btn.ghost{background:rgba(21,38,63,.07);color:var(--navy)}
-.ah-btn.ghost:hover{background:rgba(21,38,63,.13)}
+.ah-btn:hover{background:rgba(255,255,255,.24);transform:translateY(-2px)}
+.ah-btn.ghost{background:transparent}
+.ah-btn.ghost:hover{background:rgba(255,255,255,.12)}
+/* na declaração clara (ah-lead) o ah-btn vira sólido teal/brand */
+.ah-lead .ah-btn{background:var(--brand);border-color:transparent;-webkit-backdrop-filter:none;backdrop-filter:none;color:#fff}
+.ah-lead .ah-btn:hover{background:var(--brand-dark)}
+/* dentro dos blocos escuros o ah-btn é branco sólido (legível sobre o gradiente) */
+.ah-block-txt .ah-btn{background:#fff;color:var(--brand);border-color:transparent;-webkit-backdrop-filter:none;backdrop-filter:none}
+.ah-block-txt .ah-btn:hover{background:#eaf2f8}
 
 .ah-manifest{padding:82px 0}
 .ah-manifest h2{font-family:var(--ff-head);font-weight:400;text-align:center;font-size:clamp(28px,4.6vw,50px);line-height:1.12;color:var(--navy);letter-spacing:-.01em;max-width:22ch;margin:0 auto}
@@ -57,13 +64,20 @@
 .ah-faces .member .ph .fotobox{border-radius:24px}
 .ah-faces .member h4{font-family:var(--ff-head);font-weight:500}
 
-/* ===== HEADER mega-menu fiel à Alice ===== */
-.ah-header{border-bottom:1px solid rgba(21,38,63,.07)}
-.ah-header .bar{display:flex;align-items:center;gap:26px}
-.ah-header .brand-logo{height:44px;width:auto}
+/* ===== HEADER mega-menu fiel à Alice (transparente sobre o hero) ===== */
+.ah-header{position:fixed;top:0;left:0;right:0;background:transparent;border-bottom:1px solid transparent;transition:background .28s,box-shadow .28s,border-color .28s;z-index:80}
+.ah-header .bar{display:flex;align-items:center;gap:26px;height:78px}
+.ah-header .brand-logo{height:42px;width:auto;filter:brightness(0) invert(1);transition:filter .28s}
 .ah-header .nav{margin:0 auto;display:flex;align-items:center;gap:30px}
-.ah-header .nav>a,.ah-header .has-drop>a{font-family:var(--ff-body);font-weight:500;font-size:15.5px;color:var(--navy);display:inline-flex;align-items:center;gap:6px;padding:8px 0;position:relative}
-.ah-header .nav>a:hover,.ah-header .has-drop>a:hover{color:var(--brand)}
+.ah-header .nav>a,.ah-header .has-drop>a{font-family:var(--ff-body);font-weight:500;font-size:15.5px;color:#fff;display:inline-flex;align-items:center;gap:6px;padding:8px 0;position:relative;transition:color .2s}
+.ah-header .nav>a:hover,.ah-header .has-drop>a:hover{color:#8ff3ff}
+.ah-header .burger span{background:#fff}
+/* estado rolado: sólido branco, texto navy, logo colorida */
+.ah-header.scrolled{background:#fff;box-shadow:0 10px 30px rgba(21,38,63,.08);border-bottom-color:rgba(21,38,63,.07)}
+.ah-header.scrolled .brand-logo{filter:none}
+.ah-header.scrolled .nav>a,.ah-header.scrolled .has-drop>a{color:var(--navy)}
+.ah-header.scrolled .nav>a:hover,.ah-header.scrolled .has-drop>a:hover{color:var(--brand)}
+.ah-header.scrolled .burger span{background:var(--navy)}
 .ah-header .has-drop>a .cx{font-style:normal;font-size:16px;transform:rotate(90deg);transition:.2s;opacity:.6}
 .ah-header .has-drop:hover>a .cx{transform:rotate(-90deg)}
 .ah-header .ah-quote{background:var(--brand);color:#fff;border-radius:999px;padding:12px 22px;font-family:var(--ff-body);font-weight:600;font-size:15px;box-shadow:none;transition:.2s}
@@ -105,6 +119,10 @@
   .ah-header .header-cta .ah-quote{display:none}
   .ah-header .bar{height:64px}
 }
+
+/* páginas internas (header fixo transparente sobre o page-hero escuro) */
+.page-hero{padding-top:120px}
+@media(max-width:1000px){.page-hero{padding-top:104px}}
 
 /* ===== HERO ===== */
 .ah-hero h1{max-width:14ch}
