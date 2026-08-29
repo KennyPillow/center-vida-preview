@@ -64,65 +64,7 @@
 .ah-faces .member .ph .fotobox{border-radius:24px}
 .ah-faces .member h4{font-family:var(--ff-head);font-weight:500}
 
-/* ===== HEADER mega-menu fiel à Alice (transparente sobre o hero) ===== */
-.ah-header{position:fixed;top:0;left:0;right:0;background:transparent;border-bottom:1px solid transparent;transition:background .28s,box-shadow .28s,border-color .28s;z-index:80}
-.ah-header .bar{display:flex;align-items:center;gap:26px;height:78px}
-.ah-header .brand-logo{height:42px;width:auto;filter:brightness(0) invert(1);transition:filter .28s}
-.ah-header .nav{margin:0 auto;display:flex;align-items:center;gap:30px}
-.ah-header .nav>a,.ah-header .has-drop>a{font-family:var(--ff-body);font-weight:500;font-size:15.5px;color:#fff;display:inline-flex;align-items:center;gap:6px;padding:8px 0;position:relative;transition:color .2s}
-.ah-header .nav>a:hover,.ah-header .has-drop>a:hover{color:#8ff3ff}
-.ah-header .burger span{background:#fff}
-/* estado rolado: sólido branco, texto navy, logo colorida */
-.ah-header.scrolled{background:#fff;box-shadow:0 10px 30px rgba(21,38,63,.08);border-bottom-color:rgba(21,38,63,.07)}
-.ah-header.scrolled .brand-logo{filter:none}
-.ah-header.scrolled .nav>a,.ah-header.scrolled .has-drop>a{color:var(--navy)}
-.ah-header.scrolled .nav>a:hover,.ah-header.scrolled .has-drop>a:hover{color:var(--brand)}
-.ah-header.scrolled .burger span{background:var(--navy)}
-.ah-header .has-drop>a .cx{font-style:normal;font-size:16px;transform:rotate(90deg);transition:.2s;opacity:.6}
-.ah-header .has-drop:hover>a .cx{transform:rotate(-90deg)}
-.ah-header .ah-quote{background:var(--brand);color:#fff;border-radius:999px;padding:12px 22px;font-family:var(--ff-body);font-weight:600;font-size:15px;box-shadow:none;transition:.2s}
-.ah-header .ah-quote:hover{background:var(--brand-dark);transform:translateY(-1px)}
-.ah-header .nav>a.mob-only{display:none}
-.ah-header .header-cta{display:flex;align-items:center;gap:12px}
-
-/* dropdowns */
-.ah-header .has-drop{position:relative}
-.ah-header .drop{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(8px);background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:0 30px 70px rgba(21,38,63,.18);padding:14px;min-width:240px;opacity:0;visibility:hidden;transition:.22s;z-index:60}
-.ah-header .has-drop:hover .drop{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
-.ah-header .drop:before{content:"";position:absolute;top:-18px;left:0;right:0;height:18px}
-.ah-header .drop>a{display:block;padding:11px 14px;border-radius:12px;font-size:15px;color:var(--navy);font-weight:500}
-.ah-header .drop>a:hover{background:var(--soft);color:var(--brand)}
-/* mega dropdown de planos */
-.ah-header .mega-drop{display:grid;grid-template-columns:1fr 1fr 1.1fr;gap:8px;min-width:720px;left:0;transform:translateX(-30%) translateY(8px);padding:22px}
-.ah-header .mega:hover .mega-drop{transform:translateX(-30%) translateY(0)}
-.ah-header .mcol{padding:6px 8px}
-.ah-header .mcap{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-dark);font-weight:700;margin-bottom:8px;padding:0 6px}
-.ah-header .mcol>a{display:block;padding:9px 10px;border-radius:12px}
-.ah-header .mcol>a b{display:block;font-family:var(--ff-head);font-weight:600;font-size:15.5px;color:var(--navy)}
-.ah-header .mcol>a span{font-size:12.5px;color:var(--muted)}
-.ah-header .mcol>a:hover{background:var(--soft)}
-.ah-header .mfeat{background:var(--soft);border-radius:16px;display:flex;flex-direction:column;justify-content:center}
-.ah-header .mfeat p{font-size:13.5px;color:var(--ink);margin:2px 6px 14px}
-.ah-header .mfeat .ah-quote{align-self:flex-start;margin:0 6px}
-
-/* mobile */
-@media(max-width:1000px){
-  .ah-header .nav{position:fixed;inset:64px 0 auto 0;margin:0;flex-direction:column;align-items:stretch;gap:0;background:#fff;padding:12px 20px 26px;border-bottom:1px solid var(--line);box-shadow:0 24px 40px rgba(21,38,63,.14);max-height:0;overflow:hidden;transition:max-height .3s}
-  .ah-header .nav.open{max-height:88vh;overflow:auto}
-  .ah-header .nav>a,.ah-header .has-drop>a{font-size:17px;padding:15px 4px;border-bottom:1px solid var(--line);width:100%}
-  .ah-header .has-drop>a .cx{margin-left:auto}
-  .ah-header .drop,.ah-header .mega-drop{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;border:0;min-width:0;padding:4px 0 10px;display:block}
-  .ah-header .mega-drop{grid-template-columns:1fr}
-  .ah-header .drop>a{padding:10px 8px}
-  .ah-header .mfeat{margin-top:8px}
-  .ah-header .nav>a.mob-only{display:block;background:var(--brand);color:#fff;text-align:center;border-radius:999px;padding:14px;margin-top:16px;font-weight:600;border:0}
-  .ah-header .header-cta .ah-quote{display:none}
-  .ah-header .bar{height:64px}
-}
-
-/* páginas internas (header fixo transparente sobre o page-hero escuro) */
-.page-hero{padding-top:120px}
-@media(max-width:1000px){.page-hero{padding-top:104px}}
+/* (o header mega-menu foi movido para header-mega.css, compartilhado com o oficial) */
 
 /* ===== HERO ===== */
 .ah-hero h1{max-width:14ch}
