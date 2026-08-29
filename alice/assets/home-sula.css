@@ -1,0 +1,30 @@
+/* ===== HOME fiel à SULAMÉRICA: hero foto->gradiente, blocos-feature cinza ===== */
+.sh-hero{position:relative;min-height:min(80vh,640px);overflow:hidden;display:flex;align-items:center}
+.sh-bg{position:absolute;inset:0;background-size:cover;background-position:28% 22%}
+.sh-grad{position:absolute;inset:0;background:linear-gradient(90deg,rgba(19,42,78,.12) 0%,rgba(19,42,78,.5) 34%,rgba(29,61,110,.9) 62%,rgba(16,182,198,.92) 100%)}
+.sh-in{position:relative;z-index:2;width:100%;display:flex;justify-content:flex-end;padding:60px 22px}
+.sh-txt{max-width:540px;color:#fff}
+.sh-eye{font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:12px;color:#fff;opacity:.92;margin-bottom:16px}
+.sh-hero h1{color:#fff;font-size:clamp(32px,5vw,54px);line-height:1.05;font-weight:800;letter-spacing:-.02em}
+.sh-txt .sub{color:rgba(255,255,255,.92);font-size:18px;margin-top:18px}
+.sh-cta{margin-top:28px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.sh-cta .ghostw{color:#fff;font-weight:700;font-family:var(--ff-head);display:inline-flex;align-items:center;gap:8px}
+.sh-cta .ghostw svg{width:20px;height:20px;fill:#fff}
+@media(max-width:860px){.sh-in{justify-content:flex-start}.sh-grad{background:linear-gradient(180deg,rgba(19,42,78,.5),rgba(16,182,198,.9))}.sh-bg{background-position:center 20%}}
+
+.sf-head{font-weight:800;font-size:clamp(24px,3.4vw,36px);color:var(--navy);margin-bottom:30px}
+.sf-block{background:var(--soft);border-radius:26px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;min-height:400px;margin-bottom:26px;border:1px solid var(--line)}
+.sf-block.rev .sf-txt{order:2}
+.sf-txt{padding:52px;display:flex;flex-direction:column;justify-content:center}
+.sf-txt h3{font-size:clamp(23px,3vw,32px);color:var(--navy);font-weight:800;letter-spacing:-.01em}
+.sf-txt p{color:var(--ink);margin:16px 0 26px;font-size:16.5px;max-width:44ch}
+.sf-txt .btn{align-self:flex-start}
+.sf-img{position:relative}
+.sf-img img{width:100%;height:100%;object-fit:cover;object-position:center 28%}
+@media(max-width:860px){.sf-block{grid-template-columns:1fr}.sf-block.rev .sf-txt{order:0}.sf-img{min-height:250px;order:-1}.sf-txt{padding:34px 28px}}
+
+/* faixa de números estilo SulAmérica */
+.sn-band{background:var(--grad-brand);border-radius:26px;padding:44px;color:#fff;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
+.sn-band .s b{font-family:var(--ff-head);font-weight:800;font-size:clamp(26px,3.4vw,40px);display:block}
+.sn-band .s span{color:rgba(255,255,255,.85);font-size:14px}
+@media(max-width:700px){.sn-band{grid-template-columns:repeat(2,1fr);padding:32px 22px}}
