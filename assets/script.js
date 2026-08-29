@@ -51,24 +51,35 @@ document.addEventListener('DOMContentLoaded', function () {
     counters.forEach(function (el) { io2.observe(el); });
   } else { counters.forEach(animateCount); }
 
-  // ---- carrossel(éis) ----
+  // ---- carrossel infinito (loop sem "voltar" brusco) ----
   document.querySelectorAll('.carousel').forEach(function (c) {
     var track = c.querySelector('.track'); if (!track) return;
-    var slides = track.children.length; if (slides < 2) return;
-    var i = 0, timer;
+    var real = track.children.length; if (real < 2) return;
+    var clone = track.children[0].cloneNode(true); clone.setAttribute('aria-hidden', 'true');
+    track.appendChild(clone); // clona a 1ª slide no fim -> transição sempre pra frente
+    var i = 0, animating = false, timer;
     var box = c.closest('.carousel-box') || c.parentElement;
     var dots = box.querySelector('.carousel-dots');
-    function go(n) {
-      i = (n + slides) % slides; track.style.transform = 'translateX(-' + (i * 100) + '%)';
-      if (dots) [].forEach.call(dots.children, function (d, k) { d.classList.toggle('on', k === i); });
+    var EASE = 'transform .55s cubic-bezier(.2,.7,.2,1)';
+    function setDots() { if (dots) [].forEach.call(dots.children, function (d, k) { d.classList.toggle('on', k === (i % real)); }); }
+    function go(n) { i = n; track.style.transition = EASE; track.style.transform = 'translateX(-' + (i * 100) + '%)'; setDots(); }
+    track.addEventListener('transitionend', function () {
+      if (i >= real) { track.style.transition = 'none'; i = 0; track.style.transform = 'translateX(0)'; void track.offsetWidth; }
+      animating = false;
+    });
+    function next() { if (animating) return; animating = true; go(i + 1); }
+    function prev() {
+      if (animating) return; animating = true;
+      if (i === 0) { track.style.transition = 'none'; i = real; track.style.transform = 'translateX(-' + (real * 100) + '%)'; void track.offsetWidth; }
+      go(i - 1);
     }
-    var prev = box.querySelector('[data-prev]'), next = box.querySelector('[data-next]');
-    if (prev) prev.addEventListener('click', function () { go(i - 1); restart(); });
-    if (next) next.addEventListener('click', function () { go(i + 1); restart(); });
-    if (dots) [].forEach.call(dots.children, function (d, k) { d.addEventListener('click', function () { go(k); restart(); }); });
-    function start() { timer = setInterval(function () { go(i + 1); }, 5500); }
+    var pv = box.querySelector('[data-prev]'), nx = box.querySelector('[data-next]');
+    if (nx) nx.addEventListener('click', function () { next(); restart(); });
+    if (pv) pv.addEventListener('click', function () { prev(); restart(); });
+    if (dots) [].forEach.call(dots.children, function (d, k) { d.addEventListener('click', function () { if (animating) return; animating = true; go(k); restart(); }); });
+    function start() { timer = setInterval(next, 5000); }
     function restart() { clearInterval(timer); start(); }
-    go(0); start();
+    setDots(); start();
   });
 
   // ---- abas (Para Você / Para Empresas) ----
