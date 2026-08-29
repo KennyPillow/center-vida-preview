@@ -603,3 +603,18 @@ html.js .reveal.d3{transition-delay:.27s}
   .footer{padding:44px 0 24px}
   .footer .grid{gap:26px}
 }
+
+/* ==================== REDE DE HOSPITAIS ==================== */
+.carousel .slide.hosp-slide{display:block;padding:6px}
+.hosp-cap{font-family:var(--ff-head);font-weight:800;font-size:clamp(20px,2.6vw,26px);color:var(--navy);display:flex;align-items:center;gap:10px;margin-bottom:22px}
+.hosp-cap .pin{font-size:24px;line-height:1}
+.hosp-cap small{font-weight:600;color:var(--muted);font-size:12.5px;background:#fff;border:1px solid var(--line);padding:3px 10px;border-radius:999px}
+.hosp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+@media(max-width:768px){.hosp-grid{grid-template-columns:1fr}}
+.hosp-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s}
+.hosp-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.hosp-card h4{font-size:17px;color:var(--navy);margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.hosp-card h4::before{content:"🏥";font-size:15px}
+.hosp-card .subt{color:var(--muted);font-size:12.5px;margin-bottom:11px}
+.hosp-ops{display:flex;flex-wrap:wrap;gap:6px}
+.hosp-ops span{font-size:11.5px;font-weight:700;color:var(--brand);background:var(--soft2);border-radius:999px;padding:5px 11px}

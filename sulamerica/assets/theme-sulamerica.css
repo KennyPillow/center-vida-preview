@@ -1,49 +1,27 @@
-/* ===== TEMA "SULAMÉRICA" — laranja + quase-preto, Figtree, bold, pílulas ===== */
+/* ===== TEMA "SULAMÉRICA" (layout moderno/pílula/gradiente) NAS CORES DA CENTER VIDA ===== */
+/* Cores herdam da base (azul-marinho + teal + verde). Muda fonte (Figtree), nav em pílula e hero em gradiente. */
 :root{
-  --brand:#191D1D; --brand-dark:#0f1212; --brand-2:#F05223;
-  --accent:#F05223; --accent-dark:#d1420f;
-  --navy:#191D1D; --ink:#3a3f3f;
-  --green:#F05223; --green-dark:#d1420f; --green-bright:#ff7a4d;
-  --soft:#F4F5F5; --soft2:#EAECEC; --line:#E2E4E4; --muted:#6a6f6f;
-  --grad-brand:linear-gradient(120deg,#191D1D 0%,#c8410f 70%,#F05223 120%);
-  --shadow:0 14px 34px rgba(25,29,29,.10); --shadow-lg:0 28px 64px rgba(25,29,29,.18);
   --radius:18px;
   --ff-head:"Figtree",system-ui,-apple-system,sans-serif;
   --ff-body:"Figtree",system-ui,-apple-system,sans-serif;
 }
 h1,h2,h3,h4{font-weight:800;letter-spacing:-.02em}
 
-.btn{border-radius:999px}
-.btn-green{background:var(--accent);box-shadow:0 12px 26px rgba(240,82,35,.32)}
-.btn-green:hover{background:var(--green-dark)}
-.eyebrow{background:rgba(240,82,35,.12);color:var(--accent-dark)}
-.eyebrow::before{background:var(--accent);box-shadow:0 0 0 3px rgba(240,82,35,.18)}
-.nav a::after{background:linear-gradient(90deg,var(--brand),var(--accent))}
-.drop{border-top-color:var(--accent)}
-.plancard.pop,.plan.badge-pop{border-color:var(--accent);box-shadow:0 24px 50px rgba(240,82,35,.18)}
-.plan .top .ic,.iconbox .ic,.stat .ic,.sig-list .it .ic{background:linear-gradient(135deg,#ffe1d4,#ffe9e0);color:var(--accent-dark);box-shadow:inset 0 0 0 1px rgba(240,82,35,.16)}
-.tab-btn.on{background:var(--accent)}
-.rating-card .glink{color:var(--accent)}
-
-/* nav em pílula cinza (igual SulAmérica) */
+/* menu em pílula cinza (igual SulAmérica) */
 @media(min-width:1001px){
   .nav{background:var(--soft);border-radius:999px;padding:5px 8px;gap:2px}
-  .nav a{border-radius:999px}
+  .nav a{border-radius:999px;padding:10px 16px}
   .nav a::after{display:none}
-  .nav a:hover,.nav a.active-nav{background:#fff;color:var(--accent)}
+  .nav a:hover,.nav a.active-nav{background:#fff;color:var(--brand);box-shadow:0 3px 10px rgba(21,38,63,.08)}
   .has-drop .drop{border-radius:16px}
 }
 
-/* hero laranja (foto esquerda -> laranja) */
-.hero-x .ov{background:
-  linear-gradient(90deg,rgba(25,29,29,.62) 0%,rgba(200,60,15,.45) 42%,rgba(240,82,35,.9) 100%)}
-.hero-x h1{font-weight:800}
-.hero-x h1 .hl{background:none;-webkit-text-fill-color:#fff;color:#fff}
-.sec-title .hl{background:linear-gradient(100deg,var(--brand),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
-.stat .v{background:linear-gradient(120deg,var(--brand),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
-.signature .wm{color:rgba(240,82,35,.05)}
-.hero-rating{background:rgba(25,29,29,.5)}
-.hero-x .badges .b{background:rgba(25,29,29,.42)}
+/* hero com gradiente forte da marca (estilo SulAmérica), texto branco */
+.hero-x .ov{background:linear-gradient(90deg,rgba(19,42,78,.90) 0%,rgba(19,42,78,.60) 38%,rgba(21,110,150,.55) 72%,rgba(16,182,198,.62) 100%)}
+.hero-x h1 .hl{background:none !important;-webkit-text-fill-color:#fff;color:#fff}
+.page-hero{background:linear-gradient(120deg,var(--brand-dark) 0%,var(--brand) 55%,var(--accent) 120%)}
 
-.topbar{background:var(--brand-dark)}
-.wa-float{background:#25D366}
+/* cantos e pílulas do jeito SulAmérica */
+.btn{border-radius:999px}
+.header-cta .btn-green{border-radius:999px}
+.tabs{border-radius:999px}
