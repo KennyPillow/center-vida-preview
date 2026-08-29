@@ -32,5 +32,27 @@
 .ah-stats .s span{color:rgba(255,255,255,.82);font-size:13px;margin-top:4px;display:block}
 @media(max-width:860px){.ah-block{grid-template-columns:1fr}.ah-block-img{min-height:280px;order:-1}.ah-block-txt{padding:38px 28px}}
 
-/* deixa o header combinar com o hero claro */
 .ah-section{padding:20px 0}
+
+/* ===== + fidelidade à Alice ===== */
+/* header minimalista (Alice não tem barra superior) */
+.topbar{display:none}
+.header{background:#fff}
+.header .bar{height:84px}
+.header-cta .btn-green{background:var(--brand);box-shadow:none}
+.header-cta .btn-green:hover{background:var(--brand-dark)}
+.nav a{font-size:15px}
+
+/* blocos quase full-bleed com cantos grandes (como os blocos da Alice) */
+.ah-block-wrap .container{max-width:1340px}
+.ah-block{border-radius:40px;min-height:480px}
+.ah-block-txt{padding:64px}
+@media(max-width:860px){.ah-block{border-radius:28px}.ah-block-txt{padding:38px 28px}}
+
+/* botões "glass" no hero (Alice) */
+.ah-btn.ghost{background:rgba(255,255,255,.55);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);color:var(--navy);border:1px solid rgba(255,255,255,.7)}
+
+/* grade de rostos arredondada (rede/equipe), como a comunidade médica da Alice */
+.ah-faces .team-grid{gap:20px}
+.ah-faces .member .ph .fotobox{border-radius:24px}
+.ah-faces .member h4{font-family:var(--ff-head);font-weight:500}
