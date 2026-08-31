@@ -175,15 +175,19 @@ section{padding:80px 0}
 @media(max-width:900px){.hero-visual .imgph{min-height:280px}}
 
 /* ---------- trust bar (seguradoras) ---------- */
-.logos{background:var(--soft); border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:30px 0}
+.logos{background:#fff; border-bottom:1px solid var(--line); padding:34px 0; box-shadow:0 18px 40px -28px rgba(21,38,63,.35)}
 .logos .row{display:flex; align-items:center; justify-content:center; gap:16px; flex-wrap:wrap}
 .logos .cap{text-align:center; color:var(--muted); font-weight:600; font-size:13px; letter-spacing:.08em; text-transform:uppercase; margin-bottom:16px}
 .logo-chip{background:#fff; border:1px solid var(--line); border-radius:12px; padding:14px 22px; font-family:var(--ff-head);
   font-weight:800; color:var(--brand-dark); font-size:16px; box-shadow:var(--shadow); min-width:130px; text-align:center}
 
 /* ---------- stats band ---------- */
-.stats{display:grid; grid-template-columns:repeat(4,1fr); gap:22px}
-@media(max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stats{display:grid; grid-template-columns:repeat(4,1fr); gap:22px;
+  background:#fff; border:1px solid var(--line); border-radius:24px; padding:40px 26px;
+  box-shadow:0 26px 60px rgba(21,38,63,.14)}
+.stats .stat+.stat{position:relative}
+.stats .stat:not(:first-child)::before{content:"";position:absolute;left:-11px;top:14%;bottom:14%;width:1px;background:var(--line)}
+@media(max-width:760px){.stats{grid-template-columns:repeat(2,1fr);padding:28px 16px}.stats .stat::before{display:none}}
 .stat{text-align:center; padding:10px}
 .stat .v{font-family:var(--ff-head); font-weight:800; font-size:clamp(30px,5vw,46px); line-height:1;
   background:linear-gradient(120deg,var(--brand),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
@@ -356,7 +360,7 @@ html.js .reveal.d3{transition-delay:.27s}
 
 /* HERO imersivo (foto full-bleed + overlay + texto branco) */
 .hero-x{position:relative;min-height:640px;display:flex;align-items:center;overflow:hidden;color:#fff}
-.hero-x .bg{position:absolute;inset:0;background-size:cover;background-position:34% 60%;transform:scale(1.05);will-change:transform}
+.hero-x .bg{position:absolute;inset:0;background-size:cover;background-position:42% 45%;transform:scale(1.05);will-change:transform}
 .hero-x .ov{position:absolute;inset:0;background:linear-gradient(90deg,rgba(19,42,78,.93) 0%,rgba(19,42,78,.74) 38%,rgba(19,42,78,.30) 72%,rgba(16,182,198,.20) 100%)}
 .hero-x .container{position:relative;z-index:2;padding:74px 22px;width:100%}
 .hero-x .eyebrow{background:rgba(255,255,255,.16);color:#eafcff}
@@ -699,8 +703,8 @@ html,body{overflow-x:hidden;max-width:100%}
 .quiz-sent{margin-top:12px;text-align:center;font-size:13.5px;font-weight:700;color:var(--green);background:rgba(19,176,107,.1);border-radius:12px;padding:12px}
 
 /* ==================== SEPARAÇÃO/PROFUNDIDADE ENTRE CONTAINERS ==================== */
-/* seções claras ganham linha sutil no topo e base pra separar melhor */
-.bg-soft{box-shadow:inset 0 1px 0 var(--line),inset 0 -1px 0 var(--line)}
+/* seções claras ganham profundidade (sombra interna) pra separar bem dos vizinhos */
+.bg-soft{box-shadow:inset 0 14px 26px -18px rgba(21,38,63,.20),inset 0 -14px 26px -18px rgba(21,38,63,.12),inset 0 1px 0 var(--line),inset 0 -1px 0 var(--line)}
 /* cards com sombra mais marcada e hover mais evidente */
 .card,.plancard,.case,.quote,.post-card,.hosp-card,.rating-card,.form-wrap,.member .ph .fotobox{box-shadow:0 16px 40px rgba(21,38,63,.13)}
 .plancard:hover,.case:hover,.post-card:hover,.card.iconbox:hover{box-shadow:0 30px 64px rgba(21,38,63,.22);transform:translateY(-5px)}
