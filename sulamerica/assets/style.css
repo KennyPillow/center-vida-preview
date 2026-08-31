@@ -18,7 +18,7 @@
   --wa:#25D366;           /* WhatsApp */
   --amber:#F5A623;        /* estrelas / selo */
   --bg:#FFFFFF;
-  --soft:#EEF5FA;         /* seção clara (azul-esverdeado suave) */
+  --soft:#E7F0F8;         /* seção clara (azul-esverdeado suave) — separação mais visível */
   --soft2:#DEEDF3;
   --line:#DBE6EE;
   --muted:#5A6B7D;
@@ -360,7 +360,7 @@ html.js .reveal.d3{transition-delay:.27s}
 
 /* HERO imersivo (foto full-bleed + overlay + texto branco) */
 .hero-x{position:relative;min-height:640px;display:flex;align-items:center;overflow:hidden;color:#fff}
-.hero-x .bg{position:absolute;inset:0;background-size:cover;background-position:42% 45%;transform:scale(1.05);will-change:transform}
+.hero-x .bg{position:absolute;inset:0;background-size:cover;background-position:40% 35%;transform:scale(1.05);will-change:transform}
 .hero-x .ov{position:absolute;inset:0;background:linear-gradient(90deg,rgba(19,42,78,.93) 0%,rgba(19,42,78,.74) 38%,rgba(19,42,78,.30) 72%,rgba(16,182,198,.20) 100%)}
 .hero-x .container{position:relative;z-index:2;padding:74px 22px;width:100%}
 .hero-x .eyebrow{background:rgba(255,255,255,.16);color:#eafcff}
@@ -704,7 +704,9 @@ html,body{overflow-x:hidden;max-width:100%}
 
 /* ==================== SEPARAÇÃO/PROFUNDIDADE ENTRE CONTAINERS ==================== */
 /* seções claras ganham profundidade (sombra interna) pra separar bem dos vizinhos */
-.bg-soft{box-shadow:inset 0 14px 26px -18px rgba(21,38,63,.20),inset 0 -14px 26px -18px rgba(21,38,63,.12),inset 0 1px 0 var(--line),inset 0 -1px 0 var(--line)}
+.bg-soft{box-shadow:inset 0 20px 34px -22px rgba(21,38,63,.26),inset 0 -20px 34px -22px rgba(21,38,63,.16),inset 0 1px 0 rgba(21,38,63,.07),inset 0 -1px 0 rgba(21,38,63,.07)}
+/* seções brancas entre duas suaves também recebem uma leve divisória no topo */
+.bg-soft+section:not(.bg-soft)::before,section:not(.bg-soft)+.bg-soft{position:relative}
 /* cards com sombra mais marcada e hover mais evidente */
 .card,.plancard,.case,.quote,.post-card,.hosp-card,.rating-card,.form-wrap,.member .ph .fotobox{box-shadow:0 16px 40px rgba(21,38,63,.13)}
 .plancard:hover,.case:hover,.post-card:hover,.card.iconbox:hover{box-shadow:0 30px 64px rgba(21,38,63,.22);transform:translateY(-5px)}
