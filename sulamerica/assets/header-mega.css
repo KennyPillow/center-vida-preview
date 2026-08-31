@@ -29,8 +29,8 @@
 .ah-header .drop>a:hover{background:var(--soft);color:var(--brand)}
 /* mega dropdown de planos */
 .ah-header .mega-drop{display:grid;grid-template-columns:1fr 1fr 1.1fr;gap:8px;min-width:720px;max-width:calc(100vw - 32px);left:0;transform:translateX(-30%) translateY(8px);padding:22px}
-/* telas médias (1001–1200): mega fixo a 16px da borda, 2 colunas — nunca estoura */
-@media(max-width:1200px){
+/* telas médias (1001-1200): mega fixo a 16px da borda, 2 colunas, nunca estoura */
+@media(min-width:1001px) and (max-width:1200px){
   .ah-header .has-drop.mega .mega-drop{position:fixed;top:70px;left:16px;right:auto;min-width:0;width:min(660px,calc(100vw - 32px));grid-template-columns:1fr 1fr;transform:translateY(6px)}
   .ah-header .has-drop.mega:hover .mega-drop{transform:translateY(0)}
   .ah-header .mega-drop:before{top:-70px;height:70px}

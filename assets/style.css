@@ -356,7 +356,7 @@ html.js .reveal.d3{transition-delay:.27s}
 
 /* HERO imersivo (foto full-bleed + overlay + texto branco) */
 .hero-x{position:relative;min-height:640px;display:flex;align-items:center;overflow:hidden;color:#fff}
-.hero-x .bg{position:absolute;inset:0;background-size:cover;background-position:46% 74%;transform:scale(1.05);will-change:transform}
+.hero-x .bg{position:absolute;inset:0;background-size:cover;background-position:34% 60%;transform:scale(1.05);will-change:transform}
 .hero-x .ov{position:absolute;inset:0;background:linear-gradient(90deg,rgba(19,42,78,.93) 0%,rgba(19,42,78,.74) 38%,rgba(19,42,78,.30) 72%,rgba(16,182,198,.20) 100%)}
 .hero-x .container{position:relative;z-index:2;padding:74px 22px;width:100%}
 .hero-x .eyebrow{background:rgba(255,255,255,.16);color:#eafcff}
@@ -697,3 +697,14 @@ html,body{overflow-x:hidden;max-width:100%}
 .quiz-reason{font-size:13px;color:var(--ink);line-height:1.5;margin:0 0 14px;text-align:center}
 .quiz-email{cursor:pointer}
 .quiz-sent{margin-top:12px;text-align:center;font-size:13.5px;font-weight:700;color:var(--green);background:rgba(19,176,107,.1);border-radius:12px;padding:12px}
+
+/* ==================== SEPARAÇÃO/PROFUNDIDADE ENTRE CONTAINERS ==================== */
+/* seções claras ganham linha sutil no topo e base pra separar melhor */
+.bg-soft{box-shadow:inset 0 1px 0 var(--line),inset 0 -1px 0 var(--line)}
+/* cards com sombra mais marcada e hover mais evidente */
+.card,.plancard,.case,.quote,.post-card,.hosp-card,.rating-card,.form-wrap,.member .ph .fotobox{box-shadow:0 16px 40px rgba(21,38,63,.13)}
+.plancard:hover,.case:hover,.post-card:hover,.card.iconbox:hover{box-shadow:0 30px 64px rgba(21,38,63,.22);transform:translateY(-5px)}
+.hosp-card{box-shadow:0 10px 26px rgba(21,38,63,.10)}
+/* faixa de contraste entre seção branca e a próxima (divisória sutil) */
+section+section.bg-soft::before,section.bg-soft+section::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,transparent,var(--line) 20%,var(--line) 80%,transparent)}
+section{position:relative}
