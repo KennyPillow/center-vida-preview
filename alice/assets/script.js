@@ -54,6 +54,79 @@ document.addEventListener('DOMContentLoaded', function () {
     window.open('https://wa.me/' + WA + '?text=' + msg, '_blank');
   });
 
+  // ---- QUIZ de conversão ----
+  (function () {
+    var quiz = document.getElementById('quiz');
+    if (!quiz) return;
+    var steps = [].slice.call(quiz.querySelectorAll('.quiz-step'));
+    var result = quiz.querySelector('.quiz-result');
+    var bar = quiz.querySelector('.quiz-bar i');
+    var back = quiz.querySelector('.quiz-back');
+    var countB = quiz.querySelector('.quiz-count b');
+    var total = steps.length;
+    var wa = quiz.getAttribute('data-wa') || '5511954943105';
+    var answers = {};
+    var idx = 0;
+
+    function labelFor(i) { return steps[i] ? steps[i].getAttribute('data-key') : ''; }
+    function show(i) {
+      steps.forEach(function (s, k) { s.classList.toggle('on', k === i); });
+      result.classList.remove('on');
+      idx = i;
+      bar.style.width = Math.round((i / total) * 100 + (100 / total)) + '%';
+      if (countB) countB.textContent = (i + 1);
+      quiz.querySelector('.quiz-count').style.visibility = 'visible';
+      back.hidden = (i === 0);
+    }
+    function finish() {
+      steps.forEach(function (s) { s.classList.remove('on'); });
+      result.classList.add('on');
+      bar.style.width = '100%';
+      quiz.querySelector('.quiz-count').style.visibility = 'hidden';
+      back.hidden = false;
+
+      // sugestão de planos com base no perfil
+      var sug = [];
+      var para = answers.para || '';
+      var idade = answers.idade || '';
+      if (/empresa|PME/i.test(para)) { sug = ['Plano PME']; if (/Mais de 10/.test(answers.vidas || '')) sug.push('Plano Empresarial'); }
+      else if (/adesão/i.test(para)) { sug = ['Plano por Adesão', 'Plano Individual / Familiar']; }
+      else if (/família/i.test(para)) { sug = ['Plano Individual / Familiar']; }
+      else { sug = ['Plano Individual / Familiar']; }
+      if (/60/.test(idade) && !/empresa|PME/i.test(para)) sug.unshift('Plano Sênior (60+)');
+      if (/reduzir|trocar/i.test(answers.situacao || '')) sug.push('Portabilidade / revisão de plano');
+      sug = sug.filter(function (v, i, a) { return a.indexOf(v) === i; }).slice(0, 3);
+      quiz.querySelector('.quiz-chips').innerHTML = sug.map(function (s) { return '<span>' + s + '</span>'; }).join('');
+
+      // monta mensagem do WhatsApp com todas as respostas
+      var msg = 'Olá! Fiz o quiz no site da Center Vida e quero uma indicação de plano.%0A%0A';
+      steps.forEach(function (s) {
+        var k = s.getAttribute('data-key');
+        var q = s.querySelector('.quiz-q').textContent;
+        if (answers[k]) msg += '• ' + q + ' ' + answers[k] + '%0A';
+      });
+      msg += '%0ASugestão do site: ' + sug.join(', ');
+      var link = quiz.querySelector('.quiz-wa');
+      if (link) link.href = 'https://wa.me/' + wa + '?text=' + msg;
+    }
+
+    quiz.querySelectorAll('.quiz-opt').forEach(function (opt) {
+      opt.addEventListener('click', function () {
+        var step = opt.closest('.quiz-step');
+        var key = step.getAttribute('data-key');
+        answers[key] = opt.getAttribute('data-value');
+        step.querySelectorAll('.quiz-opt').forEach(function (o) { o.classList.remove('sel'); });
+        opt.classList.add('sel');
+        setTimeout(function () { if (idx + 1 < total) show(idx + 1); else finish(); }, 190);
+      });
+    });
+    back.addEventListener('click', function () {
+      if (result.classList.contains('on')) { show(total - 1); }
+      else if (idx > 0) { show(idx - 1); }
+    });
+    show(0);
+  })();
+
   // ---- reveal ao rolar ----
   var reveals = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window) {

@@ -42,13 +42,7 @@
 .ah-section{padding:20px 0}
 
 /* ===== + fidelidade à Alice ===== */
-/* header minimalista (Alice não tem barra superior) */
-.topbar{display:none}
-.header{background:#fff}
-.header .bar{height:84px}
-.header-cta .btn-green{background:var(--brand);box-shadow:none}
-.header-cta .btn-green:hover{background:var(--brand-dark)}
-.nav a{font-size:15px}
+/* (o header é controlado por header-mega.css — transparente sobre o hero) */
 
 /* blocos quase full-bleed com cantos grandes (como os blocos da Alice) */
 .ah-block-wrap .container{max-width:1340px}
@@ -67,6 +61,14 @@
 /* (o header mega-menu foi movido para header-mega.css, compartilhado com o oficial) */
 
 /* ===== HERO ===== */
+.ah-in.grid{display:grid;grid-template-columns:1.02fr .98fr;gap:44px;align-items:center}
+.ah-copy{min-width:0}
+.ah-hero .quiz .hl{background:linear-gradient(100deg,var(--brand),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+@media(max-width:980px){
+  .ah-in.grid{grid-template-columns:1fr;gap:26px}
+  .ah-hero{min-height:0}
+  .ah-hero .ah-in{padding:104px 22px 46px}
+}
 .ah-hero h1{max-width:14ch}
 .ah-sub{position:relative;z-index:2;font-family:var(--ff-body);color:rgba(21,38,63,.7);font-size:clamp(16px,2vw,20px);max-width:44ch;margin-top:22px;line-height:1.55}
 
@@ -101,3 +103,8 @@
 /* ===== manifesto grande (final) ===== */
 .ah-manifest.big{padding:70px 0 40px}
 .ah-manifest.big p{max-width:60ch;margin:22px auto 0;text-align:center;color:var(--ink);font-size:17px;line-height:1.6}
+
+/* ===== wordmark gigante no fim (assinatura estilo Alice) ===== */
+.ah-wordmark{padding:70px 0 30px;overflow:hidden}
+.ah-wordmark .wm{font-family:var(--ff-head);font-weight:300;letter-spacing:-.03em;line-height:.9;color:var(--navy);font-size:clamp(56px,13vw,190px)}
+.ah-wordmark .wm-tag{font-family:var(--ff-head);font-weight:400;color:var(--accent);font-size:clamp(18px,3vw,30px);margin-top:8px}
