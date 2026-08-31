@@ -428,8 +428,8 @@ html.js .reveal.d3{transition-delay:.27s}
 /* hero cinematográfico */
 .hero-x{min-height:min(90vh,780px)}
 .hero-x .ov{background:
-  linear-gradient(90deg,rgba(13,23,42,.95) 0%,rgba(13,23,42,.80) 34%,rgba(13,23,42,.45) 64%,rgba(16,182,198,.22) 100%),
-  linear-gradient(0deg,rgba(13,23,42,.55),transparent 42%)}
+  linear-gradient(90deg,rgba(13,23,42,.96) 0%,rgba(13,23,42,.86) 30%,rgba(13,23,42,.74) 50%,rgba(15,54,80,.82) 72%,rgba(16,116,140,.9) 100%),
+  linear-gradient(0deg,rgba(13,23,42,.55),transparent 46%)}
 .hero-x h1{font-size:clamp(38px,6vw,66px);max-width:16ch}
 .hero-x p.sub{font-size:19px}
 .hero-x .cta-solo{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-top:32px}
@@ -589,12 +589,18 @@ html.js .reveal.d3{transition-delay:.27s}
   .carousel-box:not(.hosp-box) .carousel .slide{min-width:100%;grid-template-columns:1fr;gap:18px}
   .carousel-box:not(.hosp-box) .carousel .slide[aria-hidden="true"]{display:none}
   .carousel-box:not(.hosp-box) .carousel-nav{display:none}
-  /* hospitais no mobile: mantém carrossel (navegação por setas) e cards compactos */
+  /* hospitais no mobile: carrossel mantido (setas) + cards compactos em 2 colunas */
   .hosp-box .carousel-nav{display:flex}
-  .hosp-box .hosp-card{padding:12px;gap:12px}
-  .hosp-box .hosp-card .hosp-logo{width:60px;height:60px;border-radius:12px}
-  .hosp-box .hosp-card .hosp-logo span{font-size:19px}
-  .hosp-box .hosp-card h4{font-size:15.5px}
+  .hosp-box .hosp-grid{grid-template-columns:1fr 1fr;gap:10px}
+  .hosp-box .hosp-card{flex-direction:column;align-items:flex-start;padding:12px 11px;gap:8px}
+  .hosp-box .hosp-card .hosp-logo{width:46px;height:46px;border-radius:11px}
+  .hosp-box .hosp-card .hosp-logo span{font-size:16px}
+  .hosp-box .hosp-card .hosp-logo.has-img{padding:6px}
+  .hosp-box .hosp-card h4{font-size:13.5px;line-height:1.2;margin-bottom:2px}
+  .hosp-box .hosp-card .subt{font-size:10.5px;margin-bottom:6px}
+  .hosp-box .hosp-ops{gap:4px}
+  .hosp-box .hosp-ops span{font-size:9.5px;padding:3px 7px}
+  .hosp-box .hosp-cap{font-size:19px;margin-bottom:14px}
   .rating-card{padding:26px}
   .rating-card .big{font-size:54px}
 
