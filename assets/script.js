@@ -54,77 +54,141 @@ document.addEventListener('DOMContentLoaded', function () {
     window.open('https://wa.me/' + WA + '?text=' + msg, '_blank');
   });
 
-  // ---- QUIZ de conversão ----
+  // ---- QUIZ de conversão (passos condicionais + inputs + WhatsApp + e-mail) ----
   (function () {
     var quiz = document.getElementById('quiz');
     if (!quiz) return;
-    var steps = [].slice.call(quiz.querySelectorAll('.quiz-step'));
+    var allSteps = [].slice.call(quiz.querySelectorAll('.quiz-step'));
     var result = quiz.querySelector('.quiz-result');
     var bar = quiz.querySelector('.quiz-bar i');
     var back = quiz.querySelector('.quiz-back');
     var countB = quiz.querySelector('.quiz-count b');
-    var total = steps.length;
+    var countWrap = quiz.querySelector('.quiz-count');
     var wa = quiz.getAttribute('data-wa') || '5511954943105';
+    var email = quiz.getAttribute('data-email') || '';
     var answers = {};
-    var idx = 0;
+    var history = [];
+    var cur = -1;
 
-    function labelFor(i) { return steps[i] ? steps[i].getAttribute('data-key') : ''; }
-    function show(i) {
-      steps.forEach(function (s, k) { s.classList.toggle('on', k === i); });
+    function condOK(step) {
+      var c = step.getAttribute('data-cond');
+      if (!c) return true;
+      if (c === 'multi') return !/Só eu/.test(answers.vidas || '');
+      if (c === 'empresa') return /empresa|PME/i.test(answers.para || '');
+      return true;
+    }
+    function applicable() { return allSteps.filter(condOK); }
+    function nextFrom(i) { for (var k = i + 1; k < allSteps.length; k++) { if (condOK(allSteps[k])) return k; } return -1; }
+    function firstIdx() { for (var k = 0; k < allSteps.length; k++) { if (condOK(allSteps[k])) return k; } return -1; }
+
+    function render(i) {
+      allSteps.forEach(function (s, k) { s.classList.toggle('on', k === i); });
       result.classList.remove('on');
-      idx = i;
-      bar.style.width = Math.round((i / total) * 100 + (100 / total)) + '%';
-      if (countB) countB.textContent = (i + 1);
-      quiz.querySelector('.quiz-count').style.visibility = 'visible';
-      back.hidden = (i === 0);
+      cur = i;
+      var appl = applicable(), pos = appl.indexOf(allSteps[i]), total = appl.length;
+      bar.style.width = Math.round(((pos + 1) / (total + 1)) * 100) + '%';
+      if (countB) countB.textContent = (pos + 1) + '/' + total;
+      countWrap.style.visibility = 'visible';
+      back.hidden = history.length === 0;
+      var inp = allSteps[i].querySelector('.quiz-field');
+      if (inp) setTimeout(function () { try { inp.focus(); } catch (e) {} }, 60);
     }
+    function go(i) { if (i < 0) { finish(); return; } history.push(cur); render(i); }
+
+    function labels() { return { para: 'Para quem', situacao: 'Situação', vidas: 'Nº de vidas', idade: 'Idade do titular', idadeDep: 'Idade dos dependentes', regiao: 'Região', hospital: 'Hospital preferido', cnpj: 'CNPJ', nome: 'Nome', email: 'E-mail', telefone: 'Telefone/WhatsApp' }; }
+    function dataLines() {
+      var order = ['nome', 'email', 'telefone', 'para', 'situacao', 'vidas', 'idade', 'idadeDep', 'regiao', 'hospital', 'cnpj'];
+      var L = labels(), out = [];
+      order.forEach(function (k) { if (answers[k]) out.push(L[k] + ': ' + answers[k]); });
+      return out;
+    }
+    function suggest() {
+      var para = answers.para || '', idade = answers.idade || '', dep = answers.idadeDep || '', sit = answers.situacao || '', vidas = answers.vidas || '';
+      var sug = [], reason = '';
+      if (/empresa|PME/i.test(para)) {
+        sug = ['Plano PME']; if (/Mais de 10/.test(vidas)) sug.push('Plano Empresarial');
+        sug.push('Odontológico como benefício');
+        reason = 'Com CNPJ, o plano PME/empresarial costuma ter melhor custo por vida que o individual.';
+      } else if (/adesão/i.test(para)) {
+        sug = ['Plano por Adesão', 'Plano Individual / Familiar'];
+        reason = 'Pela sua entidade de classe, o plano por adesão tende a sair mais em conta.';
+      } else if (/família/i.test(para)) {
+        sug = ['Plano Individual / Familiar'];
+        if (/60|idoso/i.test(dep)) sug.push('Plano Sênior (60+) p/ o dependente idoso');
+        reason = 'Um plano familiar cobre todos num contrato só; ajustamos a rede ao perfil das idades.';
+      } else {
+        if (/60/.test(idade)) { sug = ['Plano Sênior (60+)', 'Plano Individual / Familiar']; reason = 'Acima dos 60, o plano sênior costuma ter a melhor relação custo × cobertura.'; }
+        else { sug = ['Plano Individual / Familiar']; reason = 'Para uso individual, comparamos as operadoras e achamos o melhor custo × rede.'; }
+      }
+      if (/reduzir|trocar/i.test(sit)) sug.push('Portabilidade (aproveita carências)');
+      if (/top|Einstein/i.test(answers.hospital || '')) reason += ' Vamos priorizar operadoras com Einstein/Sírio na rede.';
+      sug = sug.filter(function (v, i, a) { return a.indexOf(v) === i; }).slice(0, 4);
+      return { sug: sug, reason: reason };
+    }
+
     function finish() {
-      steps.forEach(function (s) { s.classList.remove('on'); });
-      result.classList.add('on');
-      bar.style.width = '100%';
-      quiz.querySelector('.quiz-count').style.visibility = 'hidden';
-      back.hidden = false;
-
-      // sugestão de planos com base no perfil
-      var sug = [];
-      var para = answers.para || '';
-      var idade = answers.idade || '';
-      if (/empresa|PME/i.test(para)) { sug = ['Plano PME']; if (/Mais de 10/.test(answers.vidas || '')) sug.push('Plano Empresarial'); }
-      else if (/adesão/i.test(para)) { sug = ['Plano por Adesão', 'Plano Individual / Familiar']; }
-      else if (/família/i.test(para)) { sug = ['Plano Individual / Familiar']; }
-      else { sug = ['Plano Individual / Familiar']; }
-      if (/60/.test(idade) && !/empresa|PME/i.test(para)) sug.unshift('Plano Sênior (60+)');
-      if (/reduzir|trocar/i.test(answers.situacao || '')) sug.push('Portabilidade / revisão de plano');
-      sug = sug.filter(function (v, i, a) { return a.indexOf(v) === i; }).slice(0, 3);
-      quiz.querySelector('.quiz-chips').innerHTML = sug.map(function (s) { return '<span>' + s + '</span>'; }).join('');
-
-      // monta mensagem do WhatsApp com todas as respostas
-      var msg = 'Olá! Fiz o quiz no site da Center Vida e quero uma indicação de plano.%0A%0A';
-      steps.forEach(function (s) {
-        var k = s.getAttribute('data-key');
-        var q = s.querySelector('.quiz-q').textContent;
-        if (answers[k]) msg += '• ' + q + ' ' + answers[k] + '%0A';
-      });
-      msg += '%0ASugestão do site: ' + sug.join(', ');
+      allSteps.forEach(function (s) { s.classList.remove('on'); });
+      result.classList.add('on'); bar.style.width = '100%';
+      countWrap.style.visibility = 'hidden'; back.hidden = false;
+      var r = suggest();
+      quiz.querySelector('.quiz-chips').innerHTML = r.sug.map(function (s) { return '<span>' + s + '</span>'; }).join('');
+      quiz.querySelector('.quiz-reason').textContent = r.reason;
+      var text = 'Olá! Fiz o quiz no site da Center Vida e quero uma cotação.\n\n' + dataLines().join('\n') + '\n\nSugestão do site: ' + r.sug.join(', ');
       var link = quiz.querySelector('.quiz-wa');
-      if (link) link.href = 'https://wa.me/' + wa + '?text=' + msg;
+      if (link) link.href = 'https://wa.me/' + wa + '?text=' + encodeURIComponent(text);
     }
 
-    quiz.querySelectorAll('.quiz-opt').forEach(function (opt) {
+    // cliques nas opções (auto-avança)
+    quiz.querySelectorAll('.quiz-step[data-type="choice"] .quiz-opt').forEach(function (opt) {
       opt.addEventListener('click', function () {
-        var step = opt.closest('.quiz-step');
-        var key = step.getAttribute('data-key');
+        var step = opt.closest('.quiz-step'), key = step.getAttribute('data-key');
         answers[key] = opt.getAttribute('data-value');
         step.querySelectorAll('.quiz-opt').forEach(function (o) { o.classList.remove('sel'); });
         opt.classList.add('sel');
-        setTimeout(function () { if (idx + 1 < total) show(idx + 1); else finish(); }, 190);
+        setTimeout(function () { go(nextFrom(cur)); }, 170);
+      });
+    });
+    // passos com inputs (Continuar)
+    quiz.querySelectorAll('.quiz-step[data-type="input"] .quiz-next').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var step = btn.closest('.quiz-step');
+        var fields = [].slice.call(step.querySelectorAll('.quiz-field')), ok = true;
+        fields.forEach(function (f) {
+          var v = (f.value || '').trim();
+          var bad = (f.hasAttribute('required') && !v) || (f.type === 'email' && v && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v));
+          f.classList.toggle('err', !!bad); if (bad) ok = false;
+          answers[f.getAttribute('data-name')] = v;
+        });
+        if (ok) go(nextFrom(cur));
       });
     });
     back.addEventListener('click', function () {
-      if (result.classList.contains('on')) { show(total - 1); }
-      else if (idx > 0) { show(idx - 1); }
+      if (result.classList.contains('on')) { render(cur); return; }
+      var prev = history.pop(); if (prev != null && prev >= 0) render(prev);
     });
-    show(0);
+
+    // envio por e-mail (FormSubmit) — dispara os dados pra Center Vida
+    var emailBtn = quiz.querySelector('.quiz-email');
+    if (emailBtn) emailBtn.addEventListener('click', function () {
+      var btn = this; if (btn.disabled) return; btn.disabled = true; btn.textContent = 'Enviando...';
+      var r = suggest();
+      var payload = { _subject: 'Nova cotação pelo site (quiz) — ' + (answers.nome || 'sem nome'), _template: 'table' };
+      var L = labels();
+      Object.keys(answers).forEach(function (k) { if (L[k]) payload[L[k]] = answers[k]; });
+      payload['Sugestão do site'] = r.sug.join(', ');
+      function done() { btn.hidden = true; var s = quiz.querySelector('.quiz-sent'); if (s) s.hidden = false; }
+      if (!email) { done(); return; }
+      fetch('https://formsubmit.co/ajax/' + email, {
+        method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(payload)
+      }).then(function (res) { return res.json(); }).then(function () { done(); })
+        .catch(function () {
+          // fallback: abre o e-mail já preenchido
+          window.location.href = 'mailto:' + email + '?subject=' + encodeURIComponent('Cotação pelo site — ' + (answers.nome || '')) + '&body=' + encodeURIComponent(dataLines().join('\n') + '\n\nSugestão: ' + r.sug.join(', '));
+          done();
+        });
+    });
+
+    render(firstIdx());
   })();
 
   // ---- reveal ao rolar ----
