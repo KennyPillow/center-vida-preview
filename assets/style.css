@@ -746,6 +746,9 @@ section{position:relative}
 
 /* ==================== PAGE-HERO (páginas internas) sofisticado com foto ==================== */
 .page-hero{background:var(--navy)}
-.page-hero .ph-bg{position:absolute;inset:0;background-size:cover;background-position:center 30%;transform:scale(1.04)}
-.page-hero::before{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(100deg,rgba(15,26,45,.94) 0%,rgba(15,26,45,.8) 42%,rgba(16,60,88,.68) 74%,rgba(16,116,140,.6) 100%)}
-.page-hero>.container{position:relative;z-index:1}
+.page-hero .ph-bg{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center 32%;transform:scale(1.04)}
+.page-hero::before{content:"";position:absolute;inset:0;z-index:1;background:
+  linear-gradient(100deg,rgba(13,23,42,.96) 0%,rgba(13,23,42,.9) 44%,rgba(14,52,78,.86) 74%,rgba(16,98,122,.82) 100%),
+  linear-gradient(180deg,rgba(13,23,42,.45) 0%,transparent 38%,transparent 66%,rgba(13,23,42,.35) 100%)}
+.page-hero>.container{position:relative;z-index:2}
+.page-hero::after{z-index:2}
