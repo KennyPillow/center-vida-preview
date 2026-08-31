@@ -27,26 +27,26 @@
 .ah-header .drop:before{content:"";position:absolute;top:-18px;left:0;right:0;height:18px}
 .ah-header .drop>a{display:block;padding:11px 14px;border-radius:12px;font-size:15px;color:var(--navy);font-weight:500}
 .ah-header .drop>a:hover{background:var(--soft);color:var(--brand)}
-/* mega dropdown de planos */
-.ah-header .mega-drop{display:grid;grid-template-columns:1fr 1fr 1.1fr;gap:8px;min-width:720px;max-width:calc(100vw - 32px);left:0;transform:translateX(-30%) translateY(8px);padding:22px}
-/* telas médias (1001-1200): mega fixo a 16px da borda, 2 colunas, nunca estoura */
+/* mega dropdown de planos: 2 colunas + rodapé com CTA (limpo e equilibrado) */
+.ah-header .mega-drop{display:block;width:560px;max-width:calc(100vw - 32px);left:0;transform:translateX(-30%) translateY(8px);padding:20px}
+.ah-header .mega:hover .mega-drop{transform:translateX(-30%) translateY(0)}
+.ah-header .mega-drop .mcols{display:grid;grid-template-columns:1fr 1fr;gap:4px 18px}
+/* telas médias (1001-1200): mega fixo a 16px da borda, nunca estoura */
 @media(min-width:1001px) and (max-width:1200px){
-  .ah-header .has-drop.mega .mega-drop{position:fixed;top:70px;left:16px;right:auto;min-width:0;width:min(660px,calc(100vw - 32px));grid-template-columns:1fr 1fr;transform:translateY(6px)}
+  .ah-header .has-drop.mega .mega-drop{position:fixed;top:70px;left:16px;right:auto;width:min(560px,calc(100vw - 32px));transform:translateY(6px)}
   .ah-header .has-drop.mega:hover .mega-drop{transform:translateY(0)}
   .ah-header .mega-drop:before{top:-70px;height:70px}
-  .ah-header .mfeat{grid-column:1 / -1;flex-direction:row;align-items:center;gap:14px}
-  .ah-header .mfeat p{margin:0;flex:1}
 }
-.ah-header .mega:hover .mega-drop{transform:translateX(-30%) translateY(0)}
-.ah-header .mcol{padding:6px 8px}
-.ah-header .mcap{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-dark);font-weight:700;margin-bottom:8px;padding:0 6px}
+.ah-header .mcol{padding:4px 2px}
+.ah-header .mcap{display:block;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-dark);font-weight:700;margin-bottom:6px;padding:0 8px}
 .ah-header .mcol>a{display:block;padding:9px 10px;border-radius:12px}
-.ah-header .mcol>a b{display:block;font-family:var(--ff-head);font-weight:600;font-size:15.5px;color:var(--navy)}
-.ah-header .mcol>a span{font-size:12.5px;color:var(--muted)}
+.ah-header .mcol>a b{display:block;font-family:var(--ff-head);font-weight:600;font-size:15px;color:var(--navy);line-height:1.2}
+.ah-header .mcol>a span{font-size:12px;color:var(--muted)}
 .ah-header .mcol>a:hover{background:var(--soft)}
-.ah-header .mfeat{background:var(--soft);border-radius:16px;display:flex;flex-direction:column;justify-content:center}
-.ah-header .mfeat p{font-size:13.5px;color:var(--ink);margin:2px 6px 14px}
-.ah-header .mfeat .ah-quote{align-self:flex-start;margin:0 6px}
+.ah-header .mfoot{display:flex;align-items:center;gap:16px;margin-top:12px;padding:14px 16px;background:var(--soft);border-radius:14px}
+.ah-header .mfoot-txt b{display:block;font-family:var(--ff-head);font-weight:700;font-size:14.5px;color:var(--navy)}
+.ah-header .mfoot-txt span{font-size:12.5px;color:var(--muted);line-height:1.35}
+.ah-header .mfoot .ah-quote{margin-left:auto;white-space:nowrap;flex:none}
 
 /* mobile */
 @media(max-width:1000px){
@@ -64,13 +64,15 @@
   /* acordeão: dropdowns ficam ocultos até abrir a seção */
   .ah-header .has-drop .drop,.ah-header .has-drop .mega-drop{display:none;position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;border:0;min-width:0;padding:2px 0 10px;background:transparent}
   .ah-header .has-drop.open .drop,.ah-header .has-drop.open .mega-drop{display:block}
-  .ah-header .mega-drop{grid-template-columns:1fr;gap:0;left:0}
+  .ah-header .mega-drop{width:auto;left:0;padding:2px 0 10px}
+  .ah-header .mega-drop .mcols{grid-template-columns:1fr;gap:0}
   /* impede o transform do :hover "grudar" no toque e empurrar o conteúdo */
   .ah-header .mega:hover .mega-drop,.ah-header .has-drop.open .mega-drop,.ah-header .has-drop:hover .drop{transform:none}
-  .ah-header .mcol{padding:8px 0}
-  .ah-header .mcap{margin-top:6px}
+  .ah-header .mcol{padding:6px 0}
+  .ah-header .mcap{margin-top:10px}
   .ah-header .drop>a{padding:12px 10px;border-bottom:0}
-  .ah-header .mfeat{margin-top:10px;padding:16px}
+  .ah-header .mfoot{margin-top:10px;flex-direction:column;align-items:stretch;gap:12px;text-align:center}
+  .ah-header .mfoot .ah-quote{margin:0}
   .ah-header .nav>a.mob-only{display:block;background:var(--brand);color:#fff;text-align:center;border-radius:999px;padding:15px;margin-top:18px;font-weight:600;border:0}
   .ah-header .header-cta .ah-quote{display:none}
 }
