@@ -42,19 +42,46 @@
 
 /* mobile */
 @media(max-width:1000px){
-  .ah-header .nav{position:fixed;inset:64px 0 auto 0;margin:0;flex-direction:column;align-items:stretch;gap:0;background:#fff;padding:12px 20px 26px;border-bottom:1px solid var(--line);box-shadow:0 24px 40px rgba(21,38,63,.14);max-height:0;overflow:hidden;transition:max-height .3s}
-  .ah-header .nav.open{max-height:88vh;overflow:auto}
-  .ah-header .nav>a,.ah-header .has-drop>a{font-size:17px;padding:15px 4px;border-bottom:1px solid var(--line);width:100%;color:var(--navy)}
-  .ah-header .has-drop>a .cx{margin-left:auto}
-  .ah-header .drop,.ah-header .mega-drop{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;border:0;min-width:0;padding:4px 0 10px;display:block}
-  .ah-header .mega-drop{grid-template-columns:1fr}
-  .ah-header .drop>a{padding:10px 8px}
-  .ah-header .mfeat{margin-top:8px}
-  .ah-header .nav>a.mob-only{display:block;background:var(--brand);color:#fff;text-align:center;border-radius:999px;padding:14px;margin-top:16px;font-weight:600;border:0}
+  .ah-header .bar{height:62px}
+  /* no topo (transparente) a barra recebe um leve fundo pra não vazar sobre a foto */
+  .ah-header{background:rgba(15,26,45,.28);-webkit-backdrop-filter:saturate(120%) blur(2px);backdrop-filter:saturate(120%) blur(2px)}
+  .ah-header.scrolled{background:#fff}
+  /* painel do menu: escondido por padrão, ocupa a tela e rola internamente */
+  .ah-header .nav{display:none;position:fixed;top:62px;left:0;right:0;bottom:auto;margin:0;flex-direction:column;align-items:stretch;gap:0;background:#fff;padding:8px 20px 40px;height:calc(100vh - 62px);height:calc(100dvh - 62px);overflow-y:auto;-webkit-overflow-scrolling:touch;box-shadow:0 24px 40px rgba(21,38,63,.16)}
+  .ah-header .nav.open{display:flex}
+  .ah-header .nav>a,.ah-header .has-drop>a{font-size:16.5px;font-weight:600;padding:16px 2px;border-bottom:1px solid var(--line);width:100%;color:var(--navy)}
+  .ah-header .has-drop>a{justify-content:space-between}
+  .ah-header .has-drop>a .cx{margin-left:auto;transform:rotate(90deg);transition:transform .2s}
+  .ah-header .has-drop.open>a .cx{transform:rotate(-90deg);color:var(--brand)}
+  /* acordeão: dropdowns ficam ocultos até abrir a seção */
+  .ah-header .has-drop .drop,.ah-header .has-drop .mega-drop{display:none;position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;border:0;min-width:0;padding:2px 0 10px;background:transparent}
+  .ah-header .has-drop.open .drop,.ah-header .has-drop.open .mega-drop{display:block}
+  .ah-header .mega-drop{grid-template-columns:1fr;gap:0;left:0}
+  /* impede o transform do :hover "grudar" no toque e empurrar o conteúdo */
+  .ah-header .mega:hover .mega-drop,.ah-header .has-drop.open .mega-drop,.ah-header .has-drop:hover .drop{transform:none}
+  .ah-header .mcol{padding:8px 0}
+  .ah-header .mcap{margin-top:6px}
+  .ah-header .drop>a{padding:12px 10px;border-bottom:0}
+  .ah-header .mfeat{margin-top:10px;padding:16px}
+  .ah-header .nav>a.mob-only{display:block;background:var(--brand);color:#fff;text-align:center;border-radius:999px;padding:15px;margin-top:18px;font-weight:600;border:0}
   .ah-header .header-cta .ah-quote{display:none}
-  .ah-header .bar{height:64px}
 }
 
 /* páginas internas (header fixo transparente sobre o page-hero escuro) */
 .page-hero{padding-top:120px}
-@media(max-width:1000px){.page-hero{padding-top:104px}}
+@media(max-width:1000px){.page-hero{padding-top:96px}}
+
+/* trava o scroll do fundo enquanto o menu mobile está aberto */
+body.nav-lock{overflow:hidden}
+
+/* burger vira "X" quando o menu abre */
+.ah-header .burger{position:relative;z-index:90}
+.ah-header .burger span{transition:transform .25s ease,opacity .2s ease}
+.ah-header .burger.is-x span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+.ah-header .burger.is-x span:nth-child(2){opacity:0}
+.ah-header .burger.is-x span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+.ah-header .burger.is-x span{background:var(--navy)}
+
+/* âncoras: compensa o header fixo pra o TÍTULO da seção aparecer (não o 1º campo) */
+#cotacao,#planos,#hospitais,#contato-form{scroll-margin-top:112px}
+@media(max-width:1000px){#cotacao,#planos,#hospitais,#contato-form{scroll-margin-top:88px}}

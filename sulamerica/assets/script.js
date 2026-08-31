@@ -5,7 +5,33 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // menu mobile
   var burger = document.querySelector('.burger'), nav = document.querySelector('.nav');
-  if (burger && nav) burger.addEventListener('click', function () { nav.classList.toggle('open'); });
+  if (burger && nav) burger.addEventListener('click', function () {
+    var open = nav.classList.toggle('open');
+    document.body.classList.toggle('nav-lock', open); // trava o scroll do fundo
+    burger.classList.toggle('is-x', open);
+    if (!open) { // ao fechar, recolhe os acordeões abertos
+      nav.querySelectorAll('.has-drop.open').forEach(function (d) { d.classList.remove('open'); });
+    }
+  });
+
+  // acordeão dos dropdowns no mobile (tocar no pai abre a seção em vez de navegar)
+  nav && nav.querySelectorAll('.has-drop > a').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      if (window.matchMedia('(max-width:1000px)').matches) {
+        e.preventDefault();
+        a.parentNode.classList.toggle('open');
+      }
+    });
+  });
+  // ao tocar num link real dentro do menu, fecha o menu
+  nav && nav.querySelectorAll('a').forEach(function (a) {
+    if (a.parentNode.classList.contains('has-drop')) return; // pais são tratados acima
+    a.addEventListener('click', function () {
+      nav.classList.remove('open');
+      document.body.classList.remove('nav-lock');
+      burger && burger.classList.remove('is-x');
+    });
+  });
 
   // header encolhe/ganha sombra ao rolar
   var header = document.querySelector('.header');
