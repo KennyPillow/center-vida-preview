@@ -763,3 +763,31 @@ section{position:relative}
 .gallery .g-item.wide{grid-column:span 2}
 @media(max-width:860px){.gallery{grid-template-columns:repeat(2,1fr);grid-auto-rows:150px;gap:10px}.gallery .g-item.wide{grid-column:span 2}}
 @media(max-width:480px){.gallery{grid-auto-rows:130px}}
+
+/* ==================== ÍCONES DOS NÚMEROS: cor distinta por métrica ==================== */
+.stats .stat:nth-child(1) .ic{background:#E4ECFA}
+.stats .stat:nth-child(1) .ic svg{color:var(--brand)}
+.stats .stat:nth-child(2) .ic{background:#E1F5F7}
+.stats .stat:nth-child(2) .ic svg{color:var(--accent-dark)}
+.stats .stat:nth-child(3) .ic{background:#E4F7EE}
+.stats .stat:nth-child(3) .ic svg{color:var(--green);fill:rgba(19,176,107,.12)}
+.stats .stat:nth-child(4) .ic{background:#FBF0D8}
+.stats .stat:nth-child(4) .ic svg{color:#E6A700;fill:rgba(230,167,0,.16)}
+
+/* ==================== ÍCONES "Mais de 20 anos": cor distinta ==================== */
+.sig-list .it:nth-child(1) .ic{background:linear-gradient(135deg,#E4ECFA,#EAF1FC)}
+.sig-list .it:nth-child(1) .ic svg{color:var(--brand)}
+.sig-list .it:nth-child(2) .ic{background:linear-gradient(135deg,#E1F5F7,#E8F6F8)}
+.sig-list .it:nth-child(2) .ic svg{color:var(--accent-dark)}
+.sig-list .it:nth-child(3) .ic{background:linear-gradient(135deg,#E4F7EE,#EAF8F0)}
+.sig-list .it:nth-child(3) .ic svg{color:var(--green)}
+
+/* ==================== BLOCO AVALIAÇÕES GOOGLE (real + link) ==================== */
+.gr-block{max-width:600px;margin:0 auto;text-align:center;background:#fff;border:1px solid var(--line);border-radius:24px;padding:40px 34px;box-shadow:0 26px 60px rgba(21,38,63,.13)}
+.gr-badge{display:inline-flex;align-items:center;gap:16px;margin-bottom:18px}
+.gr-badge .gr-score{font-family:var(--ff-head);font-weight:800;font-size:54px;color:var(--brand);line-height:1}
+.gr-badge .gr-meta{text-align:left}
+.gr-badge .st{color:#E6A700;font-size:19px;letter-spacing:2px;display:block}
+.gr-badge small{color:var(--muted);font-size:13.5px}
+.gr-text{color:var(--ink);font-size:16px;line-height:1.6;margin:0 auto 24px;max-width:46ch}
+.gr-block .btn{margin:0 auto}
