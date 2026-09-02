@@ -96,8 +96,10 @@ body.nav-lock{overflow:hidden}
 .ah-header .burger.is-x span{background:var(--navy)}
 
 /* âncoras: compensa o header fixo pra o TÍTULO da seção aparecer (não o 1º campo) */
-#cotacao,#planos,#hospitais,#contato-form,#solucoes,#como-trabalhamos,#quem-somos{scroll-margin-top:132px}
-@media(max-width:1000px){#cotacao,#planos,#hospitais,#contato-form,#solucoes,#como-trabalhamos,#quem-somos{scroll-margin-top:80px}}
+#cotacao,#planos,#hospitais,#contato-form,#solucoes,#quem-somos{scroll-margin-top:132px}
+/* como-trabalhamos usa âncora no próprio título (dentro do padding da seção), então compensa só o header */
+#como-trabalhamos{scroll-margin-top:104px}
+@media(max-width:1000px){#cotacao,#planos,#hospitais,#contato-form,#solucoes,#quem-somos{scroll-margin-top:80px}#como-trabalhamos{scroll-margin-top:74px}}
 
 /* links de Soluções direto no mega-drop (novo nav) */
 .ah-header .mega-drop .mcols>a{display:block;padding:10px 12px;border-radius:12px}
