@@ -861,3 +861,6 @@ section{position:relative}
 /* logo no centro da mandala (branca sobre o gradiente) */
 .mandala-core .mc-logo{height:46px;width:auto;filter:brightness(0) invert(1);margin-bottom:8px}
 .mandala-core{gap:2px}
+
+/* aviso de campo obrigatório no quiz */
+.quiz-err{color:#d92d3a;font-size:13px;font-weight:600;margin:2px 0 10px;text-align:left}

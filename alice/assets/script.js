@@ -163,14 +163,24 @@ document.addEventListener('DOMContentLoaded', function () {
     quiz.querySelectorAll('.quiz-step[data-type="input"] .quiz-next').forEach(function (btn) {
       btn.addEventListener('click', function () {
         var step = btn.closest('.quiz-step');
-        var fields = [].slice.call(step.querySelectorAll('.quiz-field')), ok = true;
+        var fields = [].slice.call(step.querySelectorAll('.quiz-field')), ok = true, msg = '';
         fields.forEach(function (f) {
-          var v = (f.value || '').trim();
-          var bad = (f.hasAttribute('required') && !v) || (f.type === 'email' && v && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v));
-          f.classList.toggle('err', !!bad); if (bad) ok = false;
-          answers[f.getAttribute('data-name')] = v;
+          var v = (f.value || '').trim(), name = f.getAttribute('data-name'), bad = false;
+          if (f.hasAttribute('required') && !v) { bad = true; msg = 'Preencha todos os campos para continuar.'; }
+          else if (f.type === 'email' && v && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)) { bad = true; msg = 'Informe um e-mail válido.'; }
+          else if (name === 'telefone' && f.hasAttribute('required') && v.replace(/\D/g, '').length < 10) { bad = true; msg = 'Informe um WhatsApp válido com DDD.'; }
+          f.classList.toggle('err', bad); if (bad) ok = false;
+          answers[name] = v;
         });
-        if (ok) go(nextFrom(cur));
+        var errEl = step.querySelector('.quiz-err');
+        if (!ok) {
+          if (!errEl) { errEl = document.createElement('p'); errEl.className = 'quiz-err'; btn.parentNode.insertBefore(errEl, btn); }
+          errEl.textContent = msg;
+          var firstBad = step.querySelector('.quiz-field.err'); if (firstBad) firstBad.focus();
+          return;
+        }
+        if (errEl) errEl.textContent = '';
+        go(nextFrom(cur));
       });
     });
     back.addEventListener('click', function () {
