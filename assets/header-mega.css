@@ -1,9 +1,11 @@
 /* ===== HEADER mega-menu (estilo Alice) — compartilhado: oficial + variantes =====
    Transparente sobre o hero escuro; vira sólido branco ao rolar (classe .scrolled via script.js). */
 .ah-header{position:fixed;top:0;left:0;right:0;background:transparent;border-bottom:1px solid transparent;transition:background .28s,box-shadow .28s,border-color .28s;z-index:80}
-.ah-header .bar{display:flex;align-items:center;gap:26px;height:86px}
-.ah-header .brand-logo{height:56px;width:auto;filter:brightness(0) invert(1);transition:filter .28s}
-.ah-header.scrolled .bar{height:74px}
+.ah-header .bar{display:flex;align-items:center;gap:26px;height:94px}
+.ah-header .brand-logo{height:68px;width:auto;filter:brightness(0) invert(1);transition:filter .28s,height .28s}
+.ah-header.scrolled .bar{height:78px}
+.ah-header.scrolled .brand-logo{height:58px}
+@media(max-width:1000px){.ah-header .brand-logo,.ah-header.scrolled .brand-logo{height:46px}}
 .ah-header .nav{margin:0 auto;display:flex;align-items:center;gap:30px}
 .ah-header .nav>a,.ah-header .has-drop>a{font-family:var(--ff-body);font-weight:500;font-size:15.5px;color:#fff;display:inline-flex;align-items:center;gap:6px;padding:8px 0;position:relative;transition:color .2s}
 .ah-header .nav>a:hover,.ah-header .has-drop>a:hover{color:#8ff3ff}
