@@ -362,7 +362,7 @@ html.js .reveal.d3{transition-delay:.27s}
 
 /* HERO imersivo (foto full-bleed + overlay + texto branco) */
 .hero-x{position:relative;min-height:640px;display:flex;align-items:center;overflow:hidden;color:#fff}
-.hero-x .bg{position:absolute;inset:0;background-size:cover;background-position:center 30%;transform:scale(1.02);filter:brightness(1.16) saturate(1.05);will-change:transform}
+.hero-x .bg{position:absolute;inset:0;background-size:cover;background-position:center 30%;transform:scale(1.02);filter:brightness(1.06) saturate(1.04);will-change:transform}
 .hero-x .ov{position:absolute;inset:0;background:linear-gradient(90deg,rgba(19,42,78,.80) 0%,rgba(19,42,78,.56) 36%,rgba(29,61,110,.26) 68%,rgba(46,123,196,.10) 100%)}
 .hero-x .container{position:relative;z-index:2;padding:74px 22px;width:100%}
 .hero-x .eyebrow{background:rgba(255,255,255,.16);color:#eafcff}
@@ -434,8 +434,8 @@ html.js .reveal.d3{transition-delay:.27s}
 /* hero cinematográfico */
 .hero-x{min-height:min(84vh,720px)}
 .hero-x .ov{background:
-  linear-gradient(90deg,rgba(19,42,78,.82) 0%,rgba(19,42,78,.62) 30%,rgba(19,42,78,.40) 52%,rgba(29,61,110,.24) 74%,rgba(46,123,196,.10) 100%),
-  linear-gradient(0deg,rgba(19,42,78,.30),transparent 44%)}
+  linear-gradient(90deg,rgba(13,28,54,.94) 0%,rgba(13,28,54,.86) 24%,rgba(15,32,60,.66) 44%,rgba(19,42,78,.34) 66%,rgba(46,123,196,.10) 100%),
+  linear-gradient(0deg,rgba(13,28,54,.55),transparent 42%)}
 .hero-x h1{font-size:clamp(34px,4.4vw,52px);max-width:18ch;line-height:1.08}
 .hero-x p.sub{font-size:18px;max-width:52ch}
 .hero-x .cta-solo{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-top:30px}
