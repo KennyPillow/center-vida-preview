@@ -138,7 +138,9 @@ section{padding:80px 0}
 .op-logo{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 18px;box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center;min-width:120px;height:62px}
 .op-logo img{max-height:32px;max-width:118px;width:auto;object-fit:contain}
 .brand-logo{height:46px;width:auto;display:block}
-.footer .brand-logo{height:58px;filter:brightness(0) invert(1)}
+.footer .brand-logo{height:76px;filter:brightness(0) invert(1)}
+.footer .disclaimer{border-top:1px solid rgba(255,255,255,.10);margin-top:26px;padding-top:20px}
+.footer .disclaimer p{color:#8ca3ad;font-size:12px;line-height:1.6;max-width:1000px;margin:0}
 .hero .grid{display:grid; grid-template-columns:1.05fr .95fr; gap:56px; align-items:center; padding:70px 0 78px}
 .hero h1{font-size:clamp(34px,5.4vw,58px); font-weight:800; letter-spacing:-.025em; line-height:1.02}
 .hero h1 .hl,.sec-title .hl{background:linear-gradient(100deg,var(--brand) 10%,var(--accent) 95%);-webkit-background-clip:text;background-clip:text;color:transparent;position:relative}
@@ -863,9 +865,9 @@ section{position:relative}
 @media(max-width:560px){.team-grid.ceos{grid-template-columns:1fr}}
 
 /* logo no centro da mandala (branca sobre o gradiente) */
-.mandala-core .mc-logo{height:112px;width:auto;filter:brightness(0) invert(1);margin-bottom:6px}
+.mandala-core .mc-logo{height:112px;width:auto;filter:brightness(0) invert(1);margin-bottom:-14px}
 .mandala-core{gap:0}
-.mandala-core .mc-sub{margin-top:2px}
+.mandala-core .mc-sub{margin-top:-4px}
 
 /* aviso de campo obrigatório no quiz */
 .quiz-err{color:#d92d3a;font-size:13px;font-weight:600;margin:2px 0 10px;text-align:left}
