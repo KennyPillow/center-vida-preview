@@ -849,7 +849,11 @@ section{position:relative}
 .ml-item b{display:block;color:var(--navy);font-family:var(--ff-head);font-size:15.5px}
 .ml-item span{color:var(--muted);font-size:14px;line-height:1.5}
 .mandala-phrase{margin:34px auto 0;font-family:var(--ff-head);font-weight:600;font-size:clamp(17px,2.4vw,22px);color:var(--brand);max-width:56ch}
-@media(max-width:1040px){.mandala{display:none}.mandala-list{max-width:640px;margin:0 auto}}
+@media(max-width:1040px){
+  .mandala-wrap{flex-direction:column;align-items:center;gap:34px}
+  .mandala-list{max-width:640px;margin:0 auto;width:100%}
+}
+@media(max-width:560px){.mandala{display:none}}
 
 /* CEOs / liderança — placeholder */
 .member.is-ph .ph{position:relative}
