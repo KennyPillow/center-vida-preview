@@ -379,7 +379,16 @@ html.js .reveal.d3{transition-delay:.27s}
 .hero-x .badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
 .hero-x .badges .b{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:#fff;background:rgba(11,20,38,.45);border:1px solid rgba(255,255,255,.2);padding:8px 13px;border-radius:999px}
 .hero-x .badges .b .dot{width:8px;height:8px;border-radius:50%;background:var(--green-bright)}
-@media(max-width:640px){.hero-x{min-height:580px}.hero-x .bg{background-position:center 28%}.hero-x .ov{background:linear-gradient(180deg,rgba(19,42,78,.9),rgba(19,42,78,.74))}}
+@media(max-width:640px){
+  /* HERO empilhado no mobile: imagem inteira no topo + texto em fundo sólido (legível) */
+  .hero-x{min-height:0;background:linear-gradient(180deg,#0e2144,#16315d)}
+  .hero-x .bg{inset:0 0 auto 0;height:235px;background-position:center 26%;transform:none;filter:brightness(1.05) saturate(1.05)}
+  .hero-x .ov{inset:0 0 auto 0;height:235px;background:linear-gradient(180deg,rgba(10,20,40,.10) 42%,rgba(14,33,68,.55) 80%,#12294f 100%)}
+  .hero-x .container{padding-top:262px}
+  .hero-x h1{filter:none}
+  .hero-x p.sub{text-shadow:none}
+  .hero-x .eyebrow{text-shadow:none}
+}
 
 /* faixa escura fotográfica */
 .band{position:relative;overflow:hidden;color:#fff}
