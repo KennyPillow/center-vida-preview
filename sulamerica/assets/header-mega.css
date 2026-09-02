@@ -1,8 +1,9 @@
 /* ===== HEADER mega-menu (estilo Alice) — compartilhado: oficial + variantes =====
    Transparente sobre o hero escuro; vira sólido branco ao rolar (classe .scrolled via script.js). */
 .ah-header{position:fixed;top:0;left:0;right:0;background:transparent;border-bottom:1px solid transparent;transition:background .28s,box-shadow .28s,border-color .28s;z-index:80}
-.ah-header .bar{display:flex;align-items:center;gap:26px;height:78px}
-.ah-header .brand-logo{height:42px;width:auto;filter:brightness(0) invert(1);transition:filter .28s}
+.ah-header .bar{display:flex;align-items:center;gap:26px;height:86px}
+.ah-header .brand-logo{height:56px;width:auto;filter:brightness(0) invert(1);transition:filter .28s}
+.ah-header.scrolled .bar{height:74px}
 .ah-header .nav{margin:0 auto;display:flex;align-items:center;gap:30px}
 .ah-header .nav>a,.ah-header .has-drop>a{font-family:var(--ff-body);font-weight:500;font-size:15.5px;color:#fff;display:inline-flex;align-items:center;gap:6px;padding:8px 0;position:relative;transition:color .2s}
 .ah-header .nav>a:hover,.ah-header .has-drop>a:hover{color:#8ff3ff}
@@ -78,7 +79,7 @@
 }
 
 /* páginas internas (header fixo transparente sobre o page-hero escuro) */
-.page-hero{padding-top:120px}
+.page-hero{padding-top:128px}
 @media(max-width:1000px){.page-hero{padding-top:96px}}
 
 /* trava o scroll do fundo enquanto o menu mobile está aberto */
@@ -93,5 +94,11 @@ body.nav-lock{overflow:hidden}
 .ah-header .burger.is-x span{background:var(--navy)}
 
 /* âncoras: compensa o header fixo pra o TÍTULO da seção aparecer (não o 1º campo) */
-#cotacao,#planos,#hospitais,#contato-form{scroll-margin-top:112px}
-@media(max-width:1000px){#cotacao,#planos,#hospitais,#contato-form{scroll-margin-top:88px}}
+#cotacao,#planos,#hospitais,#contato-form,#solucoes,#como-trabalhamos,#quem-somos{scroll-margin-top:120px}
+@media(max-width:1000px){#cotacao,#planos,#hospitais,#contato-form,#solucoes,#como-trabalhamos,#quem-somos{scroll-margin-top:80px}}
+
+/* links de Soluções direto no mega-drop (novo nav) */
+.ah-header .mega-drop .mcols>a{display:block;padding:10px 12px;border-radius:12px}
+.ah-header .mega-drop .mcols>a b{display:block;font-family:var(--ff-head);font-weight:600;font-size:15px;color:var(--navy);line-height:1.2}
+.ah-header .mega-drop .mcols>a span{font-size:12px;color:var(--muted)}
+.ah-header .mega-drop .mcols>a:hover{background:var(--soft)}

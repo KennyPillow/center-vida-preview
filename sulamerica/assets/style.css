@@ -791,3 +791,69 @@ section{position:relative}
 .gr-badge small{color:var(--muted);font-size:13.5px}
 .gr-text{color:var(--ink);font-size:16px;line-height:1.6;margin:0 auto 24px;max-width:46ch}
 .gr-block .btn{margin:0 auto}
+
+/* ==================== REPOSICIONAMENTO: hero-solo, roteador, soluções, mandala ==================== */
+/* HERO sem formulário (imagem respira) */
+.hero-x.hero-solo .hero-copy{max-width:660px}
+.hero-x.hero-solo .container{padding-top:120px}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.hero-chips span{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.30);color:#fff;border-radius:999px;padding:7px 14px;font-size:13px;font-weight:600;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+@media(max-width:980px){
+  .hero-x.hero-solo .cta-solo,.hero-x.hero-solo .trust-row{display:flex}
+  .hero-x.hero-solo .container{padding-top:100px;padding-bottom:42px}
+}
+
+/* Roteador "O que você está buscando?" (barra flutuante sobre o hero) */
+.rot-sec{padding:0 0 10px}
+.roteador{background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:0 24px 60px rgba(21,38,63,.16);padding:20px 24px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-top:-46px;position:relative;z-index:6}
+.rot-q{font-family:var(--ff-head);font-weight:800;font-size:19px;color:var(--navy)}
+.rot-opts{display:flex;gap:10px;flex-wrap:wrap;flex:1}
+.rot-opts a{display:inline-flex;align-items:center;gap:6px;background:var(--soft);border:1px solid var(--line);border-radius:999px;padding:11px 17px;font-weight:600;font-size:14px;color:var(--navy);transition:.16s}
+.rot-opts a:hover{background:var(--brand);color:#fff;border-color:var(--brand);transform:translateY(-2px)}
+.rot-opts a svg{width:15px;height:15px}
+@media(max-width:640px){.roteador{margin-top:-30px;flex-direction:column;align-items:stretch;text-align:center}.rot-opts{justify-content:center}}
+
+/* Nossas Soluções */
+.solucoes{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.sol-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:30px 26px;box-shadow:0 16px 40px rgba(21,38,63,.10);transition:.2s}
+.sol-card:hover{transform:translateY(-6px);box-shadow:0 30px 60px rgba(21,38,63,.20);border-color:var(--accent)}
+.sol-ic{width:56px;height:56px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(135deg,#E3F5F7,#E9F1FB);margin-bottom:16px}
+.sol-ic svg{width:28px;height:28px;color:var(--brand)}
+.sol-card h3{font-size:20px;color:var(--navy);margin-bottom:8px}
+.sol-card p{color:var(--muted);font-size:14.5px;line-height:1.55}
+.sol-go{display:inline-flex;align-items:center;gap:6px;margin-top:16px;color:var(--brand);font-weight:700;font-size:14px}
+.sol-go svg{width:15px;height:15px}
+@media(max-width:900px){.solucoes{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.solucoes{grid-template-columns:1fr}}
+
+/* Mandala de serviços */
+.mandala-wrap{display:flex;gap:44px;align-items:center;justify-content:center;flex-wrap:wrap;margin-top:6px}
+.mandala{position:relative;width:440px;height:440px;flex:none}
+.mandala-core{position:absolute;left:120px;top:120px;width:200px;height:200px;border-radius:50%;background:var(--grad-brand);color:#fff;display:grid;place-items:center;text-align:center;padding:22px;box-shadow:0 24px 60px rgba(21,38,63,.3)}
+.mc-brand{font-family:var(--ff-head);font-weight:800;font-size:24px;line-height:1}
+.mc-sub{font-size:12px;opacity:.9;margin-top:8px;line-height:1.3}
+.mandala-node{position:absolute;width:130px;text-align:center}
+.mandala-node .mn-ic{width:52px;height:52px;border-radius:50%;background:#fff;border:1px solid var(--line);box-shadow:0 10px 24px rgba(21,38,63,.14);display:grid;place-items:center;margin:0 auto 8px}
+.mandala-node .mn-ic svg{width:24px;height:24px;color:var(--brand)}
+.mandala-node .mn-t{font-family:var(--ff-head);font-weight:700;font-size:12.5px;color:var(--navy);line-height:1.2;display:block}
+.mandala-node.n1{left:155px;top:0}
+.mandala-node.n2{left:307px;top:92px}
+.mandala-node.n3{left:307px;top:268px}
+.mandala-node.n4{left:155px;top:360px}
+.mandala-node.n5{left:3px;top:268px}
+.mandala-node.n6{left:3px;top:92px}
+.mandala-list{flex:1;min-width:300px;max-width:520px;display:flex;flex-direction:column;gap:14px}
+.ml-item{display:flex;gap:14px;align-items:flex-start}
+.ml-item .ml-ic{width:44px;height:44px;border-radius:12px;flex:none;background:linear-gradient(135deg,#E3F5F7,#E9F1FB);display:grid;place-items:center}
+.ml-item .ml-ic svg{width:22px;height:22px;color:var(--brand)}
+.ml-item b{display:block;color:var(--navy);font-family:var(--ff-head);font-size:15.5px}
+.ml-item span{color:var(--muted);font-size:14px;line-height:1.5}
+.mandala-phrase{margin:34px auto 0;font-family:var(--ff-head);font-weight:600;font-size:clamp(17px,2.4vw,22px);color:var(--brand);max-width:56ch}
+@media(max-width:860px){.mandala{display:none}.mandala-list{max-width:none}}
+
+/* CEOs / liderança — placeholder */
+.member.is-ph .ph{position:relative}
+.member.is-ph .ph-tag{position:absolute;left:10px;bottom:10px;background:rgba(13,23,42,.82);color:#fff;font-size:11px;font-weight:600;padding:5px 10px;border-radius:999px}
+.member.is-ph h4{color:var(--muted)}
+.team-grid.ceos{grid-template-columns:repeat(2,1fr);max-width:640px;margin:0 auto}
+@media(max-width:560px){.team-grid.ceos{grid-template-columns:1fr}}
