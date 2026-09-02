@@ -360,7 +360,7 @@ html.js .reveal.d3{transition-delay:.27s}
 
 /* HERO imersivo (foto full-bleed + overlay + texto branco) */
 .hero-x{position:relative;min-height:640px;display:flex;align-items:center;overflow:hidden;color:#fff}
-.hero-x .bg{position:absolute;inset:0;background-size:cover;background-position:40% 35%;transform:scale(1.05);will-change:transform}
+.hero-x .bg{position:absolute;inset:0;background-size:cover;background-position:78% 28%;transform:scale(1.05);will-change:transform}
 .hero-x .ov{position:absolute;inset:0;background:linear-gradient(90deg,rgba(19,42,78,.93) 0%,rgba(19,42,78,.74) 38%,rgba(19,42,78,.30) 72%,rgba(16,182,198,.20) 100%)}
 .hero-x .container{position:relative;z-index:2;padding:74px 22px;width:100%}
 .hero-x .eyebrow{background:rgba(255,255,255,.16);color:#eafcff}
@@ -377,7 +377,7 @@ html.js .reveal.d3{transition-delay:.27s}
 .hero-x .badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
 .hero-x .badges .b{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:#fff;background:rgba(11,20,38,.45);border:1px solid rgba(255,255,255,.2);padding:8px 13px;border-radius:999px}
 .hero-x .badges .b .dot{width:8px;height:8px;border-radius:50%;background:var(--green-bright)}
-@media(max-width:640px){.hero-x{min-height:580px}.hero-x .ov{background:linear-gradient(180deg,rgba(19,42,78,.9),rgba(19,42,78,.74))}}
+@media(max-width:640px){.hero-x{min-height:580px}.hero-x .bg{background-position:64% 24%}.hero-x .ov{background:linear-gradient(180deg,rgba(19,42,78,.9),rgba(19,42,78,.74))}}
 
 /* faixa escura fotográfica */
 .band{position:relative;overflow:hidden;color:#fff}
