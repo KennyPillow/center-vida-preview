@@ -135,9 +135,9 @@ section{padding:80px 0}
 .fotobox:hover img{transform:scale(1.045)}
 .fotobox::after{content:"";position:absolute;inset:0;background:linear-gradient(175deg,rgba(46,155,224,.09) 0%,transparent 34%,rgba(19,42,78,.30) 100%);pointer-events:none;z-index:1}
 .fotobox::before{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(255,255,255,.16);z-index:2;pointer-events:none}
-.op-logo{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 26px;box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center;min-width:158px;height:86px;flex:none}
-.op-logo img{max-height:46px;max-width:150px;width:auto;object-fit:contain}
-@media(max-width:640px){.op-logo{min-width:132px;height:74px;padding:14px 20px}.op-logo img{max-height:40px;max-width:124px}}
+.op-logo{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 30px;box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center;min-width:186px;height:102px;flex:none;user-select:none}
+.op-logo img{max-height:56px;max-width:176px;width:auto;object-fit:contain;-webkit-user-drag:none;user-select:none;pointer-events:none}
+@media(max-width:640px){.op-logo{min-width:150px;height:86px;padding:16px 22px}.op-logo img{max-height:48px;max-width:140px}}
 .brand-logo{height:46px;width:auto;display:block}
 .footer .brand-logo{height:76px;filter:brightness(0) invert(1)}
 .footer .disclaimer{border-top:1px solid rgba(255,255,255,.10);margin-top:26px;padding-top:20px}
@@ -416,14 +416,16 @@ html.js .reveal.d3{transition-delay:.27s}
 .rating-card .glink{display:inline-flex;align-items:center;gap:7px;margin-top:20px;background:#fff;color:var(--brand);font-weight:700;font-family:var(--ff-head);font-size:13.5px;padding:11px 20px;border-radius:999px;position:relative;z-index:1;transition:transform .2s, box-shadow .2s;box-shadow:0 6px 16px rgba(0,0,0,.15)}
 .rating-card .glink:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.22)}
 
-/* marquee de logos (movimento) */
-.marquee{overflow:hidden;position:relative;padding:10px 0;
-  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 12%,#000 88%,transparent 100%);
-  mask-image:linear-gradient(90deg,transparent 0,#000 12%,#000 88%,transparent 100%)}
-.marquee .track{display:flex;gap:18px;width:max-content;animation:scrollx 32s linear infinite}
-.marquee:hover .track{animation-play-state:paused}
-@keyframes scrollx{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-@media(prefers-reduced-motion:reduce){.marquee .track{animation:none;flex-wrap:wrap;justify-content:center}}
+/* carrossel de logos: deslize automático + arrastável (swipe/drag) */
+.marquee{overflow-x:auto;overflow-y:hidden;position:relative;padding:10px 2px;cursor:grab;
+  scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 6%,#000 94%,transparent 100%);
+  mask-image:linear-gradient(90deg,transparent 0,#000 6%,#000 94%,transparent 100%)}
+.marquee::-webkit-scrollbar{display:none}
+.marquee.dragging{cursor:grabbing;scroll-behavior:auto}
+.marquee.dragging .op-logo{pointer-events:none}
+.marquee .track{display:flex;gap:20px;width:max-content}
+@media(prefers-reduced-motion:reduce){.marquee{scroll-snap-type:x proximity}.marquee .op-logo{scroll-snap-align:center}}
 
 /* carrossel depoimentos */
 .carousel{overflow:hidden}

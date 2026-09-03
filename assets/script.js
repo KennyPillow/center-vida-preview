@@ -310,3 +310,69 @@ document.addEventListener('DOMContentLoaded', function () {
     onScroll();
   }
 });
+
+/* Carrossel de operadoras: deslize automático suave + arrastar (mouse/touch) */
+(function () {
+  function initMarquee(m) {
+    var track = m.querySelector('.track');
+    if (!track) return;
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var half = function () { return track.scrollWidth / 2; }; // uma cópia (há 2 idênticas)
+    // começa um pouco à frente pra permitir arrastar pros dois lados
+    try { m.scrollLeft = 1; } catch (e) {}
+    var paused = false, dragging = false, sx = 0, sl = 0, moved = 0;
+
+    function wrap() {
+      var h = half();
+      if (h <= 0) return;
+      if (m.scrollLeft >= h) m.scrollLeft -= h;
+      else if (m.scrollLeft <= 0) m.scrollLeft += h;
+    }
+    // auto-scroll
+    if (!reduce) {
+      var last = 0;
+      function tick(t) {
+        if (!last) last = t;
+        var dt = t - last; last = t;
+        if (!paused && !dragging) { m.scrollLeft += dt * 0.035; wrap(); }
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+      m.addEventListener('mouseenter', function () { paused = true; });
+      m.addEventListener('mouseleave', function () { paused = false; });
+    }
+    // pausa breve após rolar/tocar (touch nativo)
+    var resume;
+    m.addEventListener('scroll', function () { wrap(); }, { passive: true });
+    m.addEventListener('touchstart', function () { paused = true; }, { passive: true });
+    m.addEventListener('touchend', function () {
+      clearTimeout(resume); resume = setTimeout(function () { paused = false; }, 1200);
+    }, { passive: true });
+
+    // arrastar com o mouse (desktop)
+    m.addEventListener('pointerdown', function (e) {
+      if (e.pointerType !== 'mouse') return;
+      dragging = true; moved = 0; sx = e.clientX; sl = m.scrollLeft;
+      m.classList.add('dragging');
+      m.setPointerCapture && m.setPointerCapture(e.pointerId);
+    });
+    m.addEventListener('pointermove', function (e) {
+      if (!dragging) return;
+      var dx = e.clientX - sx; moved += Math.abs(dx);
+      m.scrollLeft = sl - dx; wrap();
+    });
+    function endDrag() {
+      if (!dragging) return;
+      dragging = false; m.classList.remove('dragging');
+      setTimeout(function () { paused = false; }, 600);
+    }
+    m.addEventListener('pointerup', endDrag);
+    m.addEventListener('pointercancel', endDrag);
+    m.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse') endDrag(); });
+    // impede o clique/drag da imagem
+    m.addEventListener('dragstart', function (e) { e.preventDefault(); });
+  }
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.marquee').forEach(initMarquee);
+  });
+})();
