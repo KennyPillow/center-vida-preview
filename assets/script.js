@@ -341,12 +341,13 @@ document.addEventListener('DOMContentLoaded', function () {
       m.addEventListener('mouseenter', function () { paused = true; });
       m.addEventListener('mouseleave', function () { paused = false; });
     }
-    // pausa breve após rolar/tocar (touch nativo)
+    // toque nativo (mobile): pausa o auto-scroll enquanto o dedo arrasta e retoma depois.
+    // NÃO chamamos wrap() no evento 'scroll' — isso cancelava o momentum do swipe no celular.
     var resume;
-    m.addEventListener('scroll', function () { wrap(); }, { passive: true });
-    m.addEventListener('touchstart', function () { paused = true; }, { passive: true });
+    m.addEventListener('touchstart', function () { paused = true; clearTimeout(resume); }, { passive: true });
+    m.addEventListener('touchmove', function () { paused = true; clearTimeout(resume); }, { passive: true });
     m.addEventListener('touchend', function () {
-      clearTimeout(resume); resume = setTimeout(function () { paused = false; }, 1200);
+      clearTimeout(resume); resume = setTimeout(function () { paused = false; }, 1600);
     }, { passive: true });
 
     // arrastar com o mouse (desktop)

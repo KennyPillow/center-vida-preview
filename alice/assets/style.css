@@ -417,7 +417,7 @@ html.js .reveal.d3{transition-delay:.27s}
 .rating-card .glink:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.22)}
 
 /* carrossel de logos: deslize automático + arrastável (swipe/drag) */
-.marquee{overflow-x:auto;overflow-y:hidden;position:relative;padding:10px 2px;cursor:grab;
+.marquee{overflow-x:auto;overflow-y:hidden;position:relative;padding:10px 2px;cursor:grab;touch-action:pan-x;-webkit-overflow-scrolling:touch;
   scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;
   -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 6%,#000 94%,transparent 100%);
   mask-image:linear-gradient(90deg,transparent 0,#000 6%,#000 94%,transparent 100%)}
