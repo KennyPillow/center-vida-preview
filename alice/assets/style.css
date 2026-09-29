@@ -136,7 +136,7 @@ section{padding:80px 0}
 .fotobox::after{content:"";position:absolute;inset:0;background:linear-gradient(175deg,rgba(46,155,224,.09) 0%,transparent 34%,rgba(19,42,78,.30) 100%);pointer-events:none;z-index:1}
 .fotobox::before{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(255,255,255,.16);z-index:2;pointer-events:none}
 .op-logo{background:#fff;border:1px solid var(--line);border-radius:16px;padding:8px;box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center;min-width:104px;width:104px;height:104px;flex:none;user-select:none}
-.op-logo img{max-height:86px;max-width:86px;width:auto;object-fit:contain;border-radius:50%;-webkit-user-drag:none;user-select:none;pointer-events:none}
+.op-logo img{max-height:88px;max-width:88px;width:auto;object-fit:contain;-webkit-user-drag:none;user-select:none;pointer-events:none}
 @media(max-width:640px){.op-logo{min-width:88px;width:88px;height:88px;padding:6px}.op-logo img{max-height:74px;max-width:74px}.marquee .track{gap:14px}}
 .brand-logo{height:46px;width:auto;display:block}
 .footer .brand-logo{height:76px;filter:brightness(0) invert(1)}
