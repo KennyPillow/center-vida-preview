@@ -224,9 +224,9 @@ section{padding:80px 0}
   font-family:var(--ff-head);font-weight:700;font-size:11px;padding:6px 44px;transform:rotate(45deg);box-shadow:0 6px 14px rgba(46,155,224,.3)}
 
 /* ---------- team ---------- */
-.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
-@media(max-width:900px){.team-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:520px){.team-grid{grid-template-columns:1fr 1fr}}
+.team-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:24px}
+.team-grid .member{flex:0 1 244px;max-width:280px}
+@media(max-width:520px){.team-grid .member{flex:0 1 46%;max-width:46%}}
 .member{text-align:center}
 .member .ph{border-radius:18px;overflow:hidden;margin-bottom:14px}
 .member .ph .imgph{min-height:0}
@@ -755,7 +755,7 @@ section{position:relative}
 
 /* ==================== HERO SLIDER (fundo dinâmico) ==================== */
 .hero-x .hero-slider{position:absolute;inset:0}
-.hero-x .bg{opacity:0;transition:opacity 1.6s ease}
+.hero-x .bg{opacity:0;transition:opacity 1s ease}
 .hero-x .bg.on{opacity:1}
 
 /* ==================== PAGE-HERO (páginas internas) sofisticado com foto ==================== */
@@ -872,8 +872,8 @@ section{position:relative}
 .member.is-ph .ph{position:relative}
 .member.is-ph .ph-tag{position:absolute;left:10px;bottom:10px;background:rgba(13,23,42,.82);color:#fff;font-size:11px;font-weight:600;padding:5px 10px;border-radius:999px}
 .member.is-ph h4{color:var(--muted)}
-.team-grid.ceos{grid-template-columns:repeat(2,1fr);max-width:640px;margin:0 auto}
-@media(max-width:560px){.team-grid.ceos{grid-template-columns:1fr}}
+.team-grid.ceos{max-width:640px;margin:0 auto}
+.team-grid.ceos .member{flex:0 1 300px;max-width:320px}
 
 /* logo no centro da mandala (branca sobre o gradiente) */
 .mandala-core .mc-logo{height:112px;width:auto;filter:brightness(0) invert(1);margin-bottom:-22px}

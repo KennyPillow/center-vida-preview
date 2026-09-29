@@ -33,15 +33,15 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // hero slider (fundo dinâmico com fade)
+  // hero slider (troca de imagem por crossfade suave; roda em todas as máquinas)
   var hs = document.querySelectorAll('.hero-slider .bg');
-  if (hs.length > 1 && !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+  if (hs.length > 1) {
     var hi = 0;
     setInterval(function () {
       hs[hi].classList.remove('on');
       hi = (hi + 1) % hs.length;
       hs[hi].classList.add('on');
-    }, 5000);
+    }, 6000);
   }
 
   // header encolhe/ganha sombra ao rolar
