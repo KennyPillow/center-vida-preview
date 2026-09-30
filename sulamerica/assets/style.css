@@ -393,7 +393,7 @@ html.js .reveal.d3{transition-delay:.27s}
   .hero-x .ov,.hero-x .hero-slider,.hero-x .hero-dots{display:none} /* desktop full-bleed some no mobile */
   /* texto claro sobre o navy (como no desktop) */
   .hero-x.hero-solo h1{color:#fff;filter:none;text-shadow:none;max-width:100%}
-  .hero-x.hero-solo h1 .hl,.hero-x.hero-solo .rotw b{background:linear-gradient(100deg,#bfe3ff,#2E7BC4);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero-x.hero-solo h1 .hl{background:linear-gradient(100deg,#bfe3ff,#2E7BC4);-webkit-background-clip:text;background-clip:text;color:transparent}
   /* ---- palco do slider (foto + cartão) ---- */
   .hero-x.hero-solo .hero-stage{order:2;display:block;position:relative;margin:16px 14px 4px}
   .hs-track{display:grid}
@@ -513,12 +513,12 @@ html.js .reveal.d3{transition-delay:.27s}
 .hero-rot{margin-top:14px;font-family:var(--ff-head);font-weight:700;font-size:clamp(16px,2.1vw,20px);color:rgba(255,255,255,.95);display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;text-shadow:0 1px 2px rgba(4,10,22,.85),0 2px 10px rgba(4,10,22,.6)}
 /* palavra rotativa à prova de corte: inline-grid empilha as palavras na mesma célula
    (a caixa cresce até a maior/mais alta — nada de descendente cortado, sem salto de largura) */
-.rotw{display:inline-grid;vertical-align:top;text-align:left}
-.rotw b{grid-area:1/1;white-space:nowrap;font-weight:inherit;opacity:0;transform:translateY(.55em);
-  transition:opacity .5s ease,transform .6s cubic-bezier(.2,.7,.2,1);
-  background:linear-gradient(100deg,#bfe3ff,#2E7BC4);-webkit-background-clip:text;background-clip:text;color:transparent}
+.rotw{display:inline-grid;vertical-align:bottom;text-align:left;overflow:visible}
+.rotw b{grid-area:1/1;white-space:nowrap;font-weight:800;opacity:0;transform:translateY(.5em);
+  transition:opacity .45s ease,transform .55s cubic-bezier(.2,.7,.2,1);
+  color:#5CC1FF;-webkit-text-fill-color:#5CC1FF}
 .rotw b.on{opacity:1;transform:none}
-.rotw b.out{opacity:0;transform:translateY(-.55em)}
+.rotw b.out{opacity:0;transform:translateY(-.5em)}
 @media(prefers-reduced-motion:reduce){.rotw b{transition:none}.scroll-progress{transition:none}}
 .scrollcue .mouse{width:22px;height:34px;border:2px solid rgba(255,255,255,.55);border-radius:12px;position:relative}
 .scrollcue .mouse::after{content:"";position:absolute;left:50%;top:6px;width:3px;height:7px;background:#fff;border-radius:2px;transform:translateX(-50%);animation:scrolldot 1.7s infinite}
