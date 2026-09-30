@@ -52,6 +52,11 @@ p{margin:0}
   font-weight:700; font-size:15px; padding:13px 22px; border-radius:999px; border:2px solid transparent;
   cursor:pointer; transition:.18s ease; white-space:nowrap; line-height:1}
 .btn svg{width:18px;height:18px}
+/* brilho que passa nos botões principais ao passar o mouse */
+.btn-green,.btn-brand,.btn-wa{position:relative;overflow:hidden}
+.btn-green::after,.btn-brand::after,.btn-wa::after{content:"";position:absolute;top:0;left:-130%;width:55%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.32),transparent);transform:skewX(-18deg);transition:left .6s ease;pointer-events:none}
+.btn-green:hover::after,.btn-brand:hover::after,.btn-wa:hover::after{left:150%}
+@media(prefers-reduced-motion:reduce){.btn-green::after,.btn-brand::after,.btn-wa::after{display:none}}
 .btn-green{background:linear-gradient(180deg,#2E8FDE,#1E7FD0); color:#fff; box-shadow:0 10px 24px rgba(30,127,208,.34)}
 .btn-green:hover{filter:brightness(1.04); transform:translateY(-2px); box-shadow:0 14px 30px rgba(30,127,208,.42)}
 .btn-wa{background:var(--wa); color:#fff}
@@ -454,7 +459,20 @@ html.js .reveal.d3{transition-delay:.27s}
 .hero-ghost{color:#fff;font-weight:700;font-family:var(--ff-head);display:inline-flex;align-items:center;gap:9px;font-size:15px;opacity:.92}
 .hero-ghost svg{width:20px;height:20px;fill:currentColor}
 .hero-ghost:hover{opacity:1;text-decoration:underline}
-.scrollcue{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);z-index:3;color:rgba(255,255,255,.72);font-size:11px;letter-spacing:.18em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:9px}
+.scrollcue{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);z-index:3;color:rgba(255,255,255,.72);font-size:11px;letter-spacing:.18em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:9px;text-decoration:none;transition:color .2s,transform .3s ease}
+.scrollcue:hover{color:#fff;transform:translateX(-50%) translateY(3px)}
+@media(max-width:640px){.scrollcue span:last-child{display:none}}
+
+/* barra de progresso de leitura (topo) */
+.scroll-progress{position:fixed;top:0;left:0;height:3px;width:100%;transform:scaleX(var(--sp,0));transform-origin:0 50%;background:linear-gradient(90deg,var(--brand),var(--accent));z-index:120;will-change:transform;pointer-events:none}
+
+/* palavra rotativa do hero */
+.hero-rot{margin-top:14px;font-family:var(--ff-head);font-weight:700;font-size:clamp(16px,2.1vw,20px);color:rgba(255,255,255,.95);display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;text-shadow:0 1px 2px rgba(4,10,22,.85),0 2px 10px rgba(4,10,22,.6)}
+.rotw{display:inline-block;position:relative;height:1.25em;overflow:hidden;vertical-align:bottom;transition:width .5s cubic-bezier(.2,.7,.2,1)}
+.rotw b{position:absolute;left:0;top:0;white-space:nowrap;font-weight:800;opacity:0;transform:translateY(90%);transition:opacity .45s ease,transform .55s cubic-bezier(.2,.7,.2,1);background:linear-gradient(100deg,#bfe3ff,#7ec2ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.rotw b.on{opacity:1;transform:none}
+.rotw b.out{opacity:0;transform:translateY(-90%)}
+@media(prefers-reduced-motion:reduce){.rotw b{transition:none}.scroll-progress{transition:none}}
 .scrollcue .mouse{width:22px;height:34px;border:2px solid rgba(255,255,255,.55);border-radius:12px;position:relative}
 .scrollcue .mouse::after{content:"";position:absolute;left:50%;top:6px;width:3px;height:7px;background:#fff;border-radius:2px;transform:translateX(-50%);animation:scrolldot 1.7s infinite}
 @keyframes scrolldot{0%{opacity:0;top:6px}40%{opacity:1}80%{opacity:0;top:17px}}
