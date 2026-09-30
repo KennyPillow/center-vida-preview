@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function () {
         sslides[si].classList.add('on');
         if (scount) scount.textContent = pad2(si + 1) + ' / ' + pad2(sslides.length);
       };
-      var splay = function () { clearInterval(stimer); stimer = setInterval(function () { sshow(si + 1); }, 5000); };
+      var splay = function () { clearInterval(stimer); stimer = setInterval(function () { sshow(si + 1); }, 4000); };
       if (sprev) sprev.addEventListener('click', function () { sshow(si - 1); splay(); });
       if (snext) snext.addEventListener('click', function () { sshow(si + 1); splay(); });
       var sx = null;
@@ -111,28 +111,22 @@ document.addEventListener('DOMContentLoaded', function () {
   window.addEventListener('resize', onScrollHeader);
   onScrollHeader();
 
-  // ---- palavra rotativa do hero ----
+  // ---- palavra rotativa do hero (inline-grid: só troca opacidade/posição, sem mexer na largura) ----
   (function () {
     var rot = document.querySelector('.rotw');
     if (!rot) return;
     var words = [].slice.call(rot.querySelectorAll('b'));
     if (words.length < 2) return;
-    var reduceRot = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     var wi = 0;
-    var fit = function () { rot.style.width = words[wi].offsetWidth + 'px'; };
-    fit();
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
-    window.addEventListener('resize', fit);
-    if (reduceRot) return;
     setInterval(function () {
       var cur = words[wi];
       wi = (wi + 1) % words.length;
       var nxt = words[wi];
       cur.classList.remove('on'); cur.classList.add('out');
-      setTimeout(function () { cur.classList.remove('out'); }, 600);
+      setTimeout(function () { cur.classList.remove('out'); }, 650);
       nxt.classList.add('on');
-      fit();
-    }, 2600);
+    }, 2800);
   })();
 
   // formulário -> WhatsApp

@@ -408,9 +408,17 @@ html.js .reveal.d3{transition-delay:.27s}
   /* ---- palco do slider (foto + cartão) ---- */
   .hero-x.hero-solo .hero-stage{order:2;display:block;position:relative;margin:16px 14px 4px}
   .hs-track{display:grid}
-  .hs-slide{grid-area:1/1;opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .45s ease,transform .45s ease;pointer-events:none}
-  .hs-slide.on{opacity:1;visibility:visible;transform:none;pointer-events:auto}
-  .hs-media{position:relative;height:clamp(290px,70vw,410px);border-radius:26px;background-size:cover;background-position:center 20%;box-shadow:0 20px 44px -20px rgba(13,28,54,.55)}
+  .hs-slide{grid-area:1/1;opacity:0;visibility:hidden;transition:opacity .8s ease,visibility 0s .8s;pointer-events:none}
+  .hs-slide.on{opacity:1;visibility:visible;transition:opacity .8s ease;pointer-events:auto}
+  .hs-media{position:relative;height:clamp(290px,70vw,410px);border-radius:26px;overflow:hidden;box-shadow:0 20px 44px -20px rgba(13,28,54,.55)}
+  .hs-img{position:absolute;inset:0;background-size:cover;background-position:center 20%;transform:scale(1.04)}
+  .hs-slide.on .hs-img{animation:kbMob 6s ease-out both}
+  @keyframes kbMob{from{transform:scale(1.04)}to{transform:scale(1.14)}}
+  /* palavra rotativa no título combina com o fundo claro */
+  .hero-x.hero-solo .rotw b{background:linear-gradient(100deg,var(--brand) 8%,var(--accent) 95%);-webkit-background-clip:text;background-clip:text;color:transparent}
+  /* botão abaixo do slider */
+  .hero-x.hero-solo .hero-cta-m{display:block;order:3;margin:16px 14px 4px}
+  .hero-x.hero-solo .hero-cta-m .btn{width:100%;max-width:none;justify-content:center}
   .hs-notif{position:absolute;top:13px;left:13px;display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.95);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-radius:13px;padding:7px 13px 7px 7px;font-family:var(--ff-head);font-size:12.5px;font-weight:700;color:var(--navy);box-shadow:0 12px 26px -14px rgba(13,28,54,.55)}
   .hs-notif i{width:25px;height:25px;border-radius:8px;background:linear-gradient(135deg,var(--brand),var(--accent));color:#fff;display:grid;place-items:center;flex:none}
   .hs-notif i svg{width:14px;height:14px}
@@ -516,10 +524,14 @@ html.js .reveal.d3{transition-delay:.27s}
 
 /* palavra rotativa do hero */
 .hero-rot{margin-top:14px;font-family:var(--ff-head);font-weight:700;font-size:clamp(16px,2.1vw,20px);color:rgba(255,255,255,.95);display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;text-shadow:0 1px 2px rgba(4,10,22,.85),0 2px 10px rgba(4,10,22,.6)}
-.rotw{display:inline-block;position:relative;height:1.25em;overflow:hidden;vertical-align:bottom;transition:width .5s cubic-bezier(.2,.7,.2,1)}
-.rotw b{position:absolute;left:0;top:0;white-space:nowrap;font-weight:800;opacity:0;transform:translateY(90%);transition:opacity .45s ease,transform .55s cubic-bezier(.2,.7,.2,1);background:linear-gradient(100deg,#bfe3ff,#7ec2ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+/* palavra rotativa à prova de corte: inline-grid empilha as palavras na mesma célula
+   (a caixa cresce até a maior/mais alta — nada de descendente cortado, sem salto de largura) */
+.rotw{display:inline-grid;vertical-align:top;text-align:left}
+.rotw b{grid-area:1/1;white-space:nowrap;font-weight:inherit;opacity:0;transform:translateY(.55em);
+  transition:opacity .5s ease,transform .6s cubic-bezier(.2,.7,.2,1);
+  background:linear-gradient(100deg,#bfe3ff,#2E7BC4);-webkit-background-clip:text;background-clip:text;color:transparent}
 .rotw b.on{opacity:1;transform:none}
-.rotw b.out{opacity:0;transform:translateY(-90%)}
+.rotw b.out{opacity:0;transform:translateY(-.55em)}
 @media(prefers-reduced-motion:reduce){.rotw b{transition:none}.scroll-progress{transition:none}}
 .scrollcue .mouse{width:22px;height:34px;border:2px solid rgba(255,255,255,.55);border-radius:12px;position:relative}
 .scrollcue .mouse::after{content:"";position:absolute;left:50%;top:6px;width:3px;height:7px;background:#fff;border-radius:2px;transform:translateX(-50%);animation:scrolldot 1.7s infinite}
@@ -825,6 +837,11 @@ section{position:relative}
 .hero-x .bg.on{opacity:1}
 .hero-dots{display:none} /* indicadores só aparecem no mobile (regra no @media) */
 .hero-stage{display:none} /* palco (foto+cartão) só aparece no mobile (regra no @media) */
+.hero-cta-m{display:none} /* botão abaixo do slider — só no mobile */
+/* Ken Burns no hero desktop (zoom lento e suave na foto ativa) */
+@keyframes kbHero{from{transform:scale(1.03)}to{transform:scale(1.11)}}
+.hero-x .bg.on{animation:kbHero 6s ease-out both}
+@media(prefers-reduced-motion:reduce){.hero-x .bg.on,.hs-slide.on .hs-img{animation:none}}
 
 /* ==================== PAGE-HERO (páginas internas) sofisticado com foto ==================== */
 .page-hero{background:var(--navy)}
@@ -961,8 +978,6 @@ section{position:relative}
   .hero-x.hero-solo p.sub,
   .hero-x.hero-solo .hero-chips,
   .hero-x.hero-solo .trust-row,
-  .hero-x.hero-solo .cta-solo .hero-ghost{display:none}
+  .hero-x.hero-solo .cta-solo{display:none} /* botão vai pra baixo do slider (.hero-cta-m) */
   .hero-x.hero-solo h1{margin-top:0;font-size:clamp(28px,7.6vw,38px)}
-  .hero-x.hero-solo .cta-solo{margin-top:20px}
-  .hero-x.hero-solo .cta-solo .btn{width:100%;max-width:none;justify-content:center}
 }
