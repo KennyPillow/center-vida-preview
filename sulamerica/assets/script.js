@@ -59,6 +59,37 @@ document.addEventListener('DOMContentLoaded', function () {
     hplay();
   }
 
+  // hero stage (topo estilo Axlo no mobile): foto + cartão, com setas, swipe, contador e autoplay
+  var stage = document.querySelector('.hero-stage');
+  if (stage) {
+    var sslides = stage.querySelectorAll('.hs-slide');
+    var scount = stage.querySelector('.hs-count');
+    var sprev = stage.querySelector('.hs-prev');
+    var snext = stage.querySelector('.hs-next');
+    if (sslides.length > 1) {
+      var si = 0, stimer;
+      var pad2 = function (n) { return (n < 10 ? '0' : '') + n; };
+      var sshow = function (n) {
+        sslides[si].classList.remove('on');
+        si = (n + sslides.length) % sslides.length;
+        sslides[si].classList.add('on');
+        if (scount) scount.textContent = pad2(si + 1) + ' / ' + pad2(sslides.length);
+      };
+      var splay = function () { clearInterval(stimer); stimer = setInterval(function () { sshow(si + 1); }, 5000); };
+      if (sprev) sprev.addEventListener('click', function () { sshow(si - 1); splay(); });
+      if (snext) snext.addEventListener('click', function () { sshow(si + 1); splay(); });
+      var sx = null;
+      stage.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; clearInterval(stimer); }, { passive: true });
+      stage.addEventListener('touchend', function (e) {
+        if (sx === null) return;
+        var dx = e.changedTouches[0].clientX - sx; sx = null;
+        if (Math.abs(dx) > 40) sshow(si + (dx < 0 ? 1 : -1));
+        splay();
+      }, { passive: true });
+      splay();
+    }
+  }
+
   // header encolhe/ganha sombra ao rolar + barra de progresso de leitura
   var header = document.querySelector('.header');
   var prog = document.querySelector('.scroll-progress');
