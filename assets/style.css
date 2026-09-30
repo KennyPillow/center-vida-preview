@@ -385,11 +385,23 @@ html.js .reveal.d3{transition-delay:.27s}
 .hero-x .badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
 .hero-x .badges .b{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:#fff;background:rgba(11,20,38,.45);border:1px solid rgba(255,255,255,.2);padding:8px 13px;border-radius:999px}
 .hero-x .badges .b .dot{width:8px;height:8px;border-radius:50%;background:var(--green-bright)}
-@media(max-width:640px){
-  /* HERO full-bleed no mobile: imagem cobre todo o container; cortina vertical + sombra garantem leitura */
-  .hero-x{min-height:600px}
-  .hero-x .bg{background-position:center 24%}
-  .hero-x .ov{background:linear-gradient(180deg,rgba(11,23,46,.58) 0%,rgba(11,23,46,.68) 40%,rgba(11,23,46,.86) 100%)}
+@media(max-width:700px){
+  /* HERO no mobile ao estilo Axlo: texto sobre fundo sólido da marca + foto num painel próprio,
+     enquadrada (sem cover-crop exagerado e sem o texto brigar com a imagem) */
+  .hero-x.hero-solo{display:flex;flex-direction:column;align-items:stretch;min-height:0;overflow:visible;
+    background:linear-gradient(158deg,#0E274D 0%,#173561 46%,#245C9E 100%)}
+  .hero-x .container{order:1;position:relative;z-index:2;padding:30px 20px 24px;width:100%}
+  .hero-x .ov{display:none}
+  .hero-x h1{filter:none;text-shadow:none;max-width:100%}
+  .hero-x p.sub,.hero-x .eyebrow,.hero-rot{text-shadow:none}
+  .hero-x p.sub{max-width:100%}
+  /* foto vira um painel enquadrado logo abaixo do texto */
+  .hero-x.hero-solo .hero-slider{order:2;position:relative;inset:auto;height:clamp(230px,62vw,340px);
+    margin:8px 12px 0;border-radius:24px;overflow:hidden}
+  .hero-x.hero-solo .hero-slider .bg{border-radius:24px;transform:none;background-position:center 26%;filter:brightness(1.03) saturate(1.05)}
+  .hero-x.hero-solo .hero-slider::after{content:"";position:absolute;inset:0;border-radius:24px;
+    background:linear-gradient(180deg,transparent 58%,rgba(9,20,40,.30));pointer-events:none}
+  .scrollcue{display:none}
 }
 
 /* faixa escura fotográfica */
@@ -900,3 +912,12 @@ section{position:relative}
 
 /* aviso de campo obrigatório no quiz */
 .quiz-err{color:#d92d3a;font-size:13px;font-weight:600;margin:2px 0 10px;text-align:left}
+
+/* ajuste fino do hero mobile (estilo Axlo): aperta o espaçamento pra a foto aparecer já na 1ª tela */
+@media(max-width:700px){
+  .hero-x.hero-solo .container{padding-top:84px;padding-bottom:16px}
+  .hero-x.hero-solo p.sub{margin-top:12px}
+  .hero-x.hero-solo .cta-solo{margin-top:20px}
+  .hero-x.hero-solo .trust-row{margin-top:16px}
+  .hero-x.hero-solo .hero-slider{margin-top:14px}
+}
