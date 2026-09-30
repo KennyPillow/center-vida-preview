@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
       hs[hi].classList.remove('on');
       hi = (hi + 1) % hs.length;
       hs[hi].classList.add('on');
-    }, 6000);
+    }, 4000);
   }
 
   // header encolhe/ganha sombra ao rolar + barra de progresso de leitura
