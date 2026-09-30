@@ -840,8 +840,11 @@ section{position:relative}
 /* HERO sem formulário (imagem respira) */
 .hero-x.hero-solo .hero-copy{max-width:660px}
 .hero-x.hero-solo .container{padding-top:120px}
-.hero-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
-.hero-chips span{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.30);color:#fff;border-radius:999px;padding:7px 14px;font-size:13px;font-weight:600;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.hero-chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px}
+.hero-chips .hchip{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);color:#fff;border-radius:999px;padding:8px 15px 8px 12px;font-size:13.5px;font-weight:600;font-family:var(--ff-head);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);transition:background .22s ease,border-color .22s ease,transform .22s ease}
+.hero-chips .hchip svg{width:16px;height:16px;flex:none;color:#bfe3ff;stroke:currentColor}
+.hero-chips .hchip:hover{background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.55);transform:translateY(-2px)}
+@media(max-width:700px){.hero-chips{gap:8px;margin-top:18px}.hero-chips .hchip{font-size:12.5px;padding:7px 13px 7px 11px}}
 @media(max-width:980px){
   .hero-x.hero-solo .cta-solo,.hero-x.hero-solo .trust-row{display:flex}
   .hero-x.hero-solo .container{padding-top:100px;padding-bottom:42px}
