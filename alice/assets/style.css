@@ -954,11 +954,15 @@ section{position:relative}
 /* aviso de campo obrigatório no quiz */
 .quiz-err{color:#d92d3a;font-size:13px;font-weight:600;margin:2px 0 10px;text-align:left}
 
-/* ajuste fino do hero mobile (estilo Axlo): aperta o espaçamento pra a foto aparecer já na 1ª tela */
+/* ajuste fino do hero mobile (estilo Axlo): topo enxuto — só título + botão, o resto vai pro slider */
 @media(max-width:700px){
-  .hero-x.hero-solo .container{padding-top:84px;padding-bottom:16px}
-  .hero-x.hero-solo p.sub{margin-top:12px}
+  .hero-x.hero-solo .container{padding-top:84px;padding-bottom:12px}
+  .hero-x.hero-solo .eyebrow,
+  .hero-x.hero-solo p.sub,
+  .hero-x.hero-solo .hero-chips,
+  .hero-x.hero-solo .trust-row,
+  .hero-x.hero-solo .cta-solo .hero-ghost{display:none}
+  .hero-x.hero-solo h1{margin-top:0;font-size:clamp(28px,7.6vw,38px)}
   .hero-x.hero-solo .cta-solo{margin-top:20px}
-  .hero-x.hero-solo .trust-row{margin-top:16px}
-  .hero-x.hero-solo .hero-slider{margin-top:14px}
+  .hero-x.hero-solo .cta-solo .btn{width:100%;max-width:none;justify-content:center}
 }
