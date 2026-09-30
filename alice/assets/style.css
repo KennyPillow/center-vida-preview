@@ -388,7 +388,7 @@ html.js .reveal.d3{transition-delay:.27s}
 @media(max-width:700px){
   /* ===== HERO MOBILE ESTILO AXLO: texto em fundo claro + foto alta + cartão branco sobreposto ===== */
   .hero-x.hero-solo{display:flex;flex-direction:column;align-items:stretch;min-height:0;overflow:visible;color:var(--navy);
-    background:linear-gradient(180deg,#E9F2FB 0%,#F3F9FE 58%,#fff 100%)}
+    background:linear-gradient(180deg,#CFE4F7 0%,#DCEDFA 52%,#E9F4FD 100%)}
   .hero-x.hero-solo .container{order:1;position:relative;z-index:2;padding:26px 20px 20px;width:100%}
   .hero-x .ov,.hero-x .hero-slider,.hero-x .hero-dots{display:none} /* desktop full-bleed some no mobile */
   /* texto escuro sobre fundo claro */
