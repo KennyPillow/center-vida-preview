@@ -368,7 +368,7 @@ html.js .reveal.d3{transition-delay:.27s}
 
 /* HERO imersivo (foto full-bleed + overlay + texto branco) */
 .hero-x{position:relative;min-height:640px;display:flex;align-items:center;overflow:hidden;color:#fff}
-.hero-x .bg{position:absolute;inset:0;background-size:cover;background-position:center 30%;transform:scale(1.02);filter:brightness(1.06) saturate(1.04);will-change:transform}
+.hero-x .bg{position:absolute;inset:0;background-size:cover;background-position:center 30%;transform:none;filter:saturate(1.02);image-rendering:auto;will-change:opacity}
 .hero-x .ov{position:absolute;inset:0;background:linear-gradient(90deg,rgba(19,42,78,.80) 0%,rgba(19,42,78,.56) 36%,rgba(29,61,110,.26) 68%,rgba(46,123,196,.10) 100%)}
 .hero-x .container{position:relative;z-index:2;padding:74px 22px;width:100%}
 .hero-x .eyebrow{background:rgba(255,255,255,.16);color:#eafcff}
@@ -386,36 +386,23 @@ html.js .reveal.d3{transition-delay:.27s}
 .hero-x .badges .b{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:#fff;background:rgba(11,20,38,.45);border:1px solid rgba(255,255,255,.2);padding:8px 13px;border-radius:999px}
 .hero-x .badges .b .dot{width:8px;height:8px;border-radius:50%;background:var(--green-bright)}
 @media(max-width:700px){
-  /* ===== HERO MOBILE ESTILO AXLO: texto em fundo claro + foto alta + cartão branco sobreposto ===== */
-  .hero-x.hero-solo{display:flex;flex-direction:column;align-items:stretch;min-height:0;overflow:visible;color:var(--navy);
-    background:linear-gradient(180deg,#CFE4F7 0%,#DCEDFA 52%,#E9F4FD 100%)}
+  /* ===== HERO MOBILE: mesma pegada do desktop (fundo navy) + foto alta + cartão branco sobreposto ===== */
+  .hero-x.hero-solo{display:flex;flex-direction:column;align-items:stretch;min-height:0;overflow:visible;color:#fff;
+    background:linear-gradient(165deg,#0D1C36 0%,#16335F 58%,#1D3D6E 100%)}
   .hero-x.hero-solo .container{order:1;position:relative;z-index:2;padding:26px 20px 20px;width:100%}
   .hero-x .ov,.hero-x .hero-slider,.hero-x .hero-dots{display:none} /* desktop full-bleed some no mobile */
-  /* texto escuro sobre fundo claro */
-  .hero-x.hero-solo h1{color:var(--navy);filter:none;text-shadow:none;max-width:100%}
-  .hero-x.hero-solo h1 .hl{background:linear-gradient(100deg,var(--brand) 8%,var(--accent) 95%);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .hero-x.hero-solo p.sub{color:var(--muted);text-shadow:none;max-width:100%}
-  .hero-x.hero-solo .eyebrow{background:#E1EEFB;color:var(--accent-dark);text-shadow:none}
-  .hero-x.hero-solo .hero-chips .hchip{background:#EAF3FB;border-color:#CFE0EC;color:var(--brand);-webkit-backdrop-filter:none;backdrop-filter:none}
-  .hero-x.hero-solo .hero-chips .hchip svg{color:var(--accent-dark)}
-  .hero-x.hero-solo .hero-chips .hchip:hover{background:#DCEBFA;border-color:var(--accent)}
-  .hero-x.hero-solo .hero-ghost{color:var(--brand)}
-  .hero-x.hero-solo .hero-rating{background:#fff;border-color:var(--line);-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:0 10px 24px -14px rgba(13,28,54,.4)}
-  .hero-x.hero-solo .hero-rating .num{color:var(--brand)}
-  .hero-x.hero-solo .hero-rating small{color:var(--muted)}
-  .hero-x.hero-solo .badges .b{color:var(--navy);background:#fff;border-color:var(--line)}
-  .hero-x.hero-solo .badges .b .dot{background:var(--accent)}
+  /* texto claro sobre o navy (como no desktop) */
+  .hero-x.hero-solo h1{color:#fff;filter:none;text-shadow:none;max-width:100%}
+  .hero-x.hero-solo h1 .hl,.hero-x.hero-solo .rotw b{background:linear-gradient(100deg,#bfe3ff,#2E7BC4);-webkit-background-clip:text;background-clip:text;color:transparent}
   /* ---- palco do slider (foto + cartão) ---- */
   .hero-x.hero-solo .hero-stage{order:2;display:block;position:relative;margin:16px 14px 4px}
   .hs-track{display:grid}
   .hs-slide{grid-area:1/1;opacity:0;visibility:hidden;transition:opacity .8s ease,visibility 0s .8s;pointer-events:none}
   .hs-slide.on{opacity:1;visibility:visible;transition:opacity .8s ease;pointer-events:auto}
   .hs-media{position:relative;height:clamp(290px,70vw,410px);border-radius:26px;overflow:hidden;box-shadow:0 20px 44px -20px rgba(13,28,54,.55)}
-  .hs-img{position:absolute;inset:0;background-size:cover;background-position:center 20%;transform:scale(1.04)}
-  .hs-slide.on .hs-img{animation:kbMob 6s ease-out both}
-  @keyframes kbMob{from{transform:scale(1.04)}to{transform:scale(1.14)}}
-  /* palavra rotativa no título combina com o fundo claro */
-  .hero-x.hero-solo .rotw b{background:linear-gradient(100deg,var(--brand) 8%,var(--accent) 95%);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hs-img{position:absolute;inset:0;background-size:cover;background-position:center 20%;transform:scale(1)}
+  .hs-slide.on .hs-img{animation:kbMob 1.4s cubic-bezier(.2,.7,.2,1) both}
+  @keyframes kbMob{from{transform:scale(1.05)}to{transform:scale(1)}}
   /* botão abaixo do slider */
   .hero-x.hero-solo .hero-cta-m{display:block;order:3;margin:16px 14px 4px}
   .hero-x.hero-solo .hero-cta-m .btn{width:100%;max-width:none;justify-content:center}
@@ -506,8 +493,8 @@ html.js .reveal.d3{transition-delay:.27s}
 .hero-x .ov{background:
   linear-gradient(90deg,rgba(13,28,54,.82) 0%,rgba(13,28,54,.68) 28%,rgba(15,32,60,.48) 50%,rgba(19,42,78,.26) 72%,rgba(46,123,196,.08) 100%),
   linear-gradient(0deg,rgba(11,23,46,.42),transparent 46%)}
-.hero-x h1{font-size:clamp(34px,4.4vw,52px);max-width:18ch;line-height:1.08;filter:drop-shadow(0 1px 1px rgba(4,10,22,.95)) drop-shadow(0 2px 4px rgba(4,10,22,.8)) drop-shadow(0 6px 22px rgba(4,10,22,.55))}
-.hero-x p.sub{font-size:18px;max-width:52ch;text-shadow:0 1px 2px rgba(4,10,22,.9),0 2px 12px rgba(4,10,22,.7)}
+.hero-x h1{font-size:clamp(34px,4.4vw,52px);max-width:18ch;line-height:1.08;filter:drop-shadow(0 2px 14px rgba(4,10,22,.42))}
+.hero-x p.sub{font-size:18px;max-width:52ch;text-shadow:0 1px 10px rgba(4,10,22,.4)}
 .hero-x .eyebrow{text-shadow:0 1px 6px rgba(6,14,30,.5)}
 .sec-anchor{display:block;height:0}
 .hero-x .cta-solo{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-top:30px}
@@ -839,8 +826,9 @@ section{position:relative}
 .hero-stage{display:none} /* palco (foto+cartão) só aparece no mobile (regra no @media) */
 .hero-cta-m{display:none} /* botão abaixo do slider — só no mobile */
 /* Ken Burns no hero desktop (zoom lento e suave na foto ativa) */
-@keyframes kbHero{from{transform:scale(1.03)}to{transform:scale(1.11)}}
-.hero-x .bg.on{animation:kbHero 6s ease-out both}
+/* entrada suave: a foto "assenta" levemente e para na escala nativa (nítida, sem zoom contínuo que enjoa) */
+@keyframes heroSettle{from{transform:scale(1.035)}to{transform:scale(1)}}
+.hero-x .bg.on{animation:heroSettle 1.4s cubic-bezier(.2,.7,.2,1) both}
 @media(prefers-reduced-motion:reduce){.hero-x .bg.on,.hs-slide.on .hs-img{animation:none}}
 
 /* ==================== PAGE-HERO (páginas internas) sofisticado com foto ==================== */
