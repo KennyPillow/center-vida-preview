@@ -44,13 +44,50 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 6000);
   }
 
-  // header encolhe/ganha sombra ao rolar
+  // header encolhe/ganha sombra ao rolar + barra de progresso de leitura
   var header = document.querySelector('.header');
-  if (header) {
-    var onScrollHeader = function () { header.classList.toggle('scrolled', window.pageYOffset > 12); };
-    window.addEventListener('scroll', onScrollHeader, { passive: true });
-    onScrollHeader();
-  }
+  var prog = document.querySelector('.scroll-progress');
+  var docEl = document.documentElement;
+  var hdrTicking = false;
+  var onScrollHeader = function () {
+    if (hdrTicking) return; hdrTicking = true;
+    requestAnimationFrame(function () {
+      var y = window.pageYOffset;
+      if (header) header.classList.toggle('scrolled', y > 12);
+      if (prog) {
+        var max = docEl.scrollHeight - window.innerHeight;
+        prog.style.setProperty('--sp', max > 0 ? (y / max).toFixed(4) : 0);
+      }
+      hdrTicking = false;
+    });
+  };
+  window.addEventListener('scroll', onScrollHeader, { passive: true });
+  window.addEventListener('resize', onScrollHeader);
+  onScrollHeader();
+
+  // ---- palavra rotativa do hero ----
+  (function () {
+    var rot = document.querySelector('.rotw');
+    if (!rot) return;
+    var words = [].slice.call(rot.querySelectorAll('b'));
+    if (words.length < 2) return;
+    var reduceRot = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var wi = 0;
+    var fit = function () { rot.style.width = words[wi].offsetWidth + 'px'; };
+    fit();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+    window.addEventListener('resize', fit);
+    if (reduceRot) return;
+    setInterval(function () {
+      var cur = words[wi];
+      wi = (wi + 1) % words.length;
+      var nxt = words[wi];
+      cur.classList.remove('on'); cur.classList.add('out');
+      setTimeout(function () { cur.classList.remove('out'); }, 600);
+      nxt.classList.add('on');
+      fit();
+    }, 2600);
+  })();
 
   // formulário -> WhatsApp
   var form = document.getElementById('cotacao');
