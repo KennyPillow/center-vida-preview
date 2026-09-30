@@ -33,15 +33,30 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // hero slider (troca de imagem por crossfade suave; roda em todas as máquinas)
-  var hs = document.querySelectorAll('.hero-slider .bg');
-  if (hs.length > 1) {
-    var hi = 0;
-    setInterval(function () {
+  // hero slider (crossfade automático + swipe/arraste no mobile + indicadores)
+  var slider = document.querySelector('.hero-slider');
+  var hs = slider ? slider.querySelectorAll('.bg') : [];
+  var hdots = slider ? slider.querySelectorAll('.hero-dots button') : [];
+  if (slider && hs.length > 1) {
+    var hi = 0, htimer;
+    var hshow = function (n) {
       hs[hi].classList.remove('on');
-      hi = (hi + 1) % hs.length;
+      hi = (n + hs.length) % hs.length;
       hs[hi].classList.add('on');
-    }, 4000);
+      for (var k = 0; k < hdots.length; k++) hdots[k].classList.toggle('on', k === hi);
+    };
+    var hplay = function () { clearInterval(htimer); htimer = setInterval(function () { hshow(hi + 1); }, 4000); };
+    hdots.forEach(function (d, k) { d.addEventListener('click', function () { hshow(k); hplay(); }); });
+    // swipe/arraste com o dedo (mobile)
+    var hx = null;
+    slider.addEventListener('touchstart', function (e) { hx = e.touches[0].clientX; clearInterval(htimer); }, { passive: true });
+    slider.addEventListener('touchend', function (e) {
+      if (hx === null) return;
+      var dx = e.changedTouches[0].clientX - hx; hx = null;
+      if (Math.abs(dx) > 40) hshow(hi + (dx < 0 ? 1 : -1));
+      hplay();
+    }, { passive: true });
+    hplay();
   }
 
   // header encolhe/ganha sombra ao rolar + barra de progresso de leitura

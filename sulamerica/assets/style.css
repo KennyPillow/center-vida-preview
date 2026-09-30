@@ -400,7 +400,13 @@ html.js .reveal.d3{transition-delay:.27s}
     margin:8px 12px 0;border-radius:24px;overflow:hidden}
   .hero-x.hero-solo .hero-slider .bg{border-radius:24px;transform:none;background-position:center 26%;filter:brightness(1.03) saturate(1.05)}
   .hero-x.hero-solo .hero-slider::after{content:"";position:absolute;inset:0;border-radius:24px;
-    background:linear-gradient(180deg,transparent 58%,rgba(9,20,40,.30));pointer-events:none}
+    background:linear-gradient(180deg,transparent 52%,rgba(9,20,40,.42));pointer-events:none;z-index:1}
+  /* indicadores do slider (só no mobile) */
+  .hero-x.hero-solo .hero-dots{display:flex;position:absolute;left:0;right:0;bottom:12px;z-index:3;
+    justify-content:center;align-items:center;gap:7px}
+  .hero-x.hero-solo .hero-dots button{width:7px;height:7px;padding:0;border:0;border-radius:999px;
+    background:rgba(255,255,255,.55);cursor:pointer;transition:width .28s ease,background .28s ease}
+  .hero-x.hero-solo .hero-dots button.on{width:24px;background:#fff}
   .scrollcue{display:none}
 }
 
@@ -787,6 +793,7 @@ section{position:relative}
 .hero-x .hero-slider{position:absolute;inset:0}
 .hero-x .bg{opacity:0;transition:opacity 1s ease}
 .hero-x .bg.on{opacity:1}
+.hero-dots{display:none} /* indicadores só aparecem no mobile (regra no @media) */
 
 /* ==================== PAGE-HERO (páginas internas) sofisticado com foto ==================== */
 .page-hero{background:var(--navy)}
