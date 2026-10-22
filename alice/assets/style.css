@@ -236,8 +236,10 @@ section{padding:80px 0}
 .team-sub::before{background:linear-gradient(90deg,var(--line),transparent)}
 .team-block .team-grid + .team-sub{margin-top:40px}
 .team-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:24px}
-.team-grid .member{flex:0 1 258px;max-width:280px}
-@media(max-width:520px){.team-grid .member,.team-grid.ceos .member{flex:0 1 46%;max-width:46%}}
+.team-grid .member{flex:0 1 258px;max-width:280px;min-width:0}
+/* até 760px os cards do par usam % (nunca estouram a largura da tela) */
+@media(max-width:760px){.team-grid .member,.team-grid.ceos .member{flex:0 1 44%;max-width:44%;min-width:0}}
+@media(max-width:380px){.team-grid .member,.team-grid.ceos .member{flex:1 1 100%;max-width:300px}}
 .member{text-align:center;display:flex;flex-direction:column}
 .member .ph{border-radius:18px;overflow:hidden;margin-bottom:14px}
 .member .ph .imgph{min-height:0}
@@ -955,7 +957,8 @@ section{position:relative}
 .member.is-ph .ph-tag{position:absolute;left:10px;bottom:10px;background:rgba(13,23,42,.82);color:#fff;font-size:11px;font-weight:600;padding:5px 10px;border-radius:999px}
 .member.is-ph h4{color:var(--muted)}
 .team-grid.ceos{max-width:600px;margin:0 auto}
-.team-grid.ceos .member{flex:0 1 258px;max-width:280px}
+.team-grid.ceos .member{flex:0 1 258px;max-width:280px;min-width:0}
+@media(max-width:760px){.team-grid.ceos{max-width:none}}
 
 /* logo no centro da mandala (branca sobre o gradiente) */
 .mandala-core .mc-logo{height:112px;width:auto;filter:brightness(0) invert(1);margin-bottom:-22px}
