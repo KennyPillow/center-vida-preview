@@ -202,13 +202,12 @@ document.addEventListener('DOMContentLoaded', function () {
         reason = 'Pela sua entidade de classe, o plano por adesão tende a sair mais em conta.';
       } else if (/família/i.test(para)) {
         sug = ['Plano Individual / Familiar'];
-        if (/60|idoso/i.test(dep)) sug.push('Plano Sênior (60+) p/ o dependente idoso');
+        if (/59|idoso/i.test(dep)) sug.push('Plano Sênior p/ o dependente idoso');
         reason = 'Um plano familiar cobre todos num contrato só; ajustamos a rede ao perfil das idades.';
       } else {
-        if (/60/.test(idade)) { sug = ['Plano Sênior (60+)', 'Plano Individual / Familiar']; reason = 'Acima dos 60, o plano sênior costuma ter a melhor relação custo × cobertura.'; }
+        if (/59/.test(idade)) { sug = ['Plano Sênior', 'Plano Individual / Familiar']; reason = 'A partir dos 59 anos, o plano sênior costuma ter a melhor relação custo × cobertura.'; }
         else { sug = ['Plano Individual / Familiar']; reason = 'Para uso individual, comparamos as operadoras e achamos o melhor custo × rede.'; }
       }
-      if (/reduzir|trocar/i.test(sit)) sug.push('Portabilidade (aproveita carências)');
       if (/top|Einstein/i.test(answers.hospital || '')) reason += ' Vamos priorizar operadoras com Einstein/Sírio na rede.';
       sug = sug.filter(function (v, i, a) { return a.indexOf(v) === i; }).slice(0, 4);
       return { sug: sug, reason: reason };
@@ -275,15 +274,19 @@ document.addEventListener('DOMContentLoaded', function () {
       Object.keys(answers).forEach(function (k) { if (L[k]) payload[L[k]] = answers[k]; });
       payload['Sugestão do site'] = r.sug.join(', ');
       function done() { btn.hidden = true; var s = quiz.querySelector('.quiz-sent'); if (s) s.hidden = false; }
+      function fallbackMail() {
+        // se o envio automático falhar, abre o e-mail já preenchido (não perde o lead)
+        window.location.href = 'mailto:' + email + '?subject=' + encodeURIComponent('Cotação pelo site — ' + (answers.nome || '')) + '&body=' + encodeURIComponent(dataLines().join('\n') + '\n\nSugestão: ' + r.sug.join(', '));
+        done();
+      }
       if (!email) { done(); return; }
+      // aborta se demorar demais, pra nunca ficar preso em "Enviando..."
+      var ctrl = ('AbortController' in window) ? new AbortController() : null;
+      var to = setTimeout(function () { if (ctrl) ctrl.abort(); else fallbackMail(); }, 9000);
       fetch('https://formsubmit.co/ajax/' + email, {
-        method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(payload)
-      }).then(function (res) { return res.json(); }).then(function () { done(); })
-        .catch(function () {
-          // fallback: abre o e-mail já preenchido
-          window.location.href = 'mailto:' + email + '?subject=' + encodeURIComponent('Cotação pelo site — ' + (answers.nome || '')) + '&body=' + encodeURIComponent(dataLines().join('\n') + '\n\nSugestão: ' + r.sug.join(', '));
-          done();
-        });
+        method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(payload), signal: ctrl ? ctrl.signal : undefined
+      }).then(function (res) { return res.json(); }).then(function () { clearTimeout(to); done(); })
+        .catch(function () { clearTimeout(to); fallbackMail(); });
     });
 
     render(firstIdx());
