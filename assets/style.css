@@ -67,6 +67,8 @@ p{margin:0}
 .btn-outline:hover{background:var(--brand); color:#fff}
 .btn-white{background:#fff; color:var(--brand)}
 .btn-white:hover{transform:translateY(-2px)}
+/* feedback tátil ao pressionar (vence o :hover por vir depois; único retorno no mobile, que não tem hover) */
+.btn:active{transform:scale(.97);transition-duration:.08s}
 .btn-lg{padding:16px 30px; font-size:16px}
 .btn-block{display:flex;width:100%;justify-content:center}
 
@@ -111,7 +113,8 @@ p{margin:0}
 /* ---------- whatsapp float ---------- */
 .wa-float{position:fixed; right:20px; bottom:20px; z-index:60; width:60px;height:60px;border-radius:50%;
   background:var(--wa); display:grid; place-items:center; box-shadow:0 12px 30px rgba(37,211,102,.45);
-  animation:wapulse 2.6s infinite}
+  animation:wapulse 2.6s ease-out 3}
+.wa-float:hover{animation:wapulse 2.6s ease-out 1}
 .wa-float svg{width:32px;height:32px;fill:#fff}
 @keyframes wapulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.5)}70%{box-shadow:0 0 0 16px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
 @media(prefers-reduced-motion:reduce){.wa-float{animation:none}}
@@ -470,7 +473,7 @@ html.js .reveal.d3{transition-delay:.27s}
 .rating-card .st{color:#FFC24B;font-size:20px;letter-spacing:3px}
 .rating-card small{color:rgba(255,255,255,.9);font-size:13px}
 .rating-card .glink{display:inline-flex;align-items:center;gap:7px;margin-top:20px;background:#fff;color:var(--brand);font-weight:700;font-family:var(--ff-head);font-size:13.5px;padding:11px 20px;border-radius:999px;position:relative;z-index:1;transition:transform .2s, box-shadow .2s;box-shadow:0 6px 16px rgba(0,0,0,.15)}
-.rating-card .glink:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.22)}
+.rating-card .glink:hover{box-shadow:0 10px 24px rgba(0,0,0,.22)}
 
 /* carrossel de logos: deslize automático + arrastável (swipe/drag) */
 .marquee{overflow-x:auto;overflow-y:hidden;position:relative;padding:10px 2px;cursor:grab;touch-action:pan-x;-webkit-overflow-scrolling:touch;
@@ -490,7 +493,7 @@ html.js .reveal.d3{transition-delay:.27s}
 @media(max-width:900px){.carousel .slide{grid-template-columns:1fr}}
 .carousel-nav{display:flex;gap:10px;justify-content:center;align-items:center;margin-top:26px}
 .carousel-nav button{width:46px;height:46px;border-radius:50%;border:1.5px solid var(--line);background:#fff;color:var(--brand);cursor:pointer;font-size:20px;line-height:1;transition:.2s;display:grid;place-items:center}
-.carousel-nav button:hover{background:var(--brand);color:#fff;border-color:var(--brand);transform:translateY(-2px)}
+.carousel-nav button:hover{background:var(--brand);color:#fff;border-color:var(--brand)}
 .carousel-dots{display:flex;gap:7px}
 .carousel-dots i{width:9px;height:9px;border-radius:50%;background:var(--line);cursor:pointer;transition:.2s}
 .carousel-dots i.on{background:var(--accent);width:24px;border-radius:5px}
@@ -742,7 +745,7 @@ html.js .reveal.d3{transition-delay:.27s}
 .quiz-head p{color:var(--muted);font-size:13.5px;margin-top:8px;line-height:1.5}
 .quiz-badge{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--accent-dark);background:var(--soft);border-radius:999px;padding:6px 12px;margin-bottom:12px}
 .quiz-bar{height:6px;border-radius:999px;background:var(--soft2);margin:18px 0 16px;overflow:hidden}
-.quiz-bar i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--brand),var(--accent));transition:width .35s ease}
+.quiz-bar i{display:block;height:100%;width:100%;border-radius:999px;background:linear-gradient(90deg,var(--brand),var(--accent));transform-origin:left;transform:scaleX(0);transition:transform .35s cubic-bezier(.2,.7,.2,1)}
 .quiz-body{position:relative}
 .quiz-step{display:none;animation:quizIn .28s ease both}
 .quiz-step.on{display:block}
@@ -894,7 +897,7 @@ section{position:relative}
 .hero-chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px}
 .hero-chips .hchip{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);color:#fff;border-radius:999px;padding:8px 15px 8px 12px;font-size:13.5px;font-weight:600;font-family:var(--ff-head);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);transition:background .22s ease,border-color .22s ease,transform .22s ease}
 .hero-chips .hchip svg{width:16px;height:16px;flex:none;color:#bfe3ff;stroke:currentColor}
-.hero-chips .hchip:hover{background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.55);transform:translateY(-2px)}
+.hero-chips .hchip:hover{background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.55)}
 @media(max-width:700px){.hero-chips{gap:8px;margin-top:18px}.hero-chips .hchip{font-size:12.5px;padding:7px 13px 7px 11px}}
 @media(max-width:980px){
   .hero-x.hero-solo .cta-solo,.hero-x.hero-solo .trust-row{display:flex}
@@ -906,7 +909,7 @@ section{position:relative}
 .rot-q{font-family:var(--ff-head);font-weight:800;font-size:19px;color:var(--navy)}
 .rot-opts{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
 .rot-opts a{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:10px 16px;font-weight:600;font-size:14px;color:var(--navy);box-shadow:0 6px 18px rgba(21,38,63,.06);transition:.16s}
-.rot-opts a:hover{background:var(--brand);color:#fff;border-color:var(--brand);transform:translateY(-2px)}
+.rot-opts a:hover{background:var(--brand);color:#fff;border-color:var(--brand)}
 .rot-opts a svg{width:15px;height:15px}
 @media(max-width:640px){.roteador{flex-direction:column;align-items:stretch;text-align:center;gap:12px}.rot-opts{justify-content:center}}
 
@@ -977,4 +980,18 @@ section{position:relative}
   .hero-x.hero-solo .trust-row,
   .hero-x.hero-solo .cta-solo{display:none} /* botão vai pra baixo do slider (.hero-cta-m) */
   .hero-x.hero-solo h1{margin-top:0;font-size:clamp(28px,7.6vw,38px)}
+}
+
+/* ---------- acessibilidade: respeito global a prefers-reduced-motion ----------
+   Rede de segurança além das guardas pontuais: neutraliza qualquer animação/
+   transição não coberta individualmente (fadeUp das abas, quizIn, etc.) e
+   desliga o scroll suave. Preserva os estados finais, sem quebrar o layout. */
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
+    scroll-behavior:auto !important;
+  }
 }
